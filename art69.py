@@ -8,8 +8,10 @@ REPO = "../pjl-audiovisuel"
 
 def trouve_fichier_du_texte(texte):
     global REPO
-    fichiers = [fichier.replace('_', ' ') for fichier in os.listdir(REPO)]
-    fichier, score = process.extractOne(texte, fichiers, scorer=fuzz.token_sort_ratio)
+    fichiers = os.listdir(REPO)
+    fichiers_clean = [fichier.replace('_', ' ') for fichier in fichiers]
+    fichier_clean, score = process.extractOne(texte, fichiers_clean, scorer=fuzz.token_sort_ratio)
+    fichier = fichiers[fichiers_clean.index(fichier_clean)]
     if score > 90:
         return os.path.join(REPO, fichier)
 
