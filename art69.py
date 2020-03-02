@@ -12,16 +12,18 @@ def trouve_fichier_du_texte(texte):
     fichiers_clean = [fichier.replace('_', ' ') for fichier in fichiers]
     fichier_clean, score = process.extractOne(texte, fichiers_clean, scorer=fuzz.token_sort_ratio)
     fichier = fichiers[fichiers_clean.index(fichier_clean)]
-    if score > 90:
+    if score > 50:
         return os.path.join(REPO, fichier)
+    raise Exception("Texte introuvable: " + texte)
 
 def trouve_article(article, contenu_texte):
     for i, line in enumerate(contenu_texte):
         if 'Article %s' % article in line:
             return i
+    raise Exception("Article introuvable: " + article)
 
 
-def inserer(texte, article, alinea, contenu):
+def inserer(texte, article, contenu, alinea=None):
     print("Insertion")
     fichier = trouve_fichier_du_texte(texte)
     print("Fichier du texte:", fichier)
@@ -32,7 +34,17 @@ def inserer(texte, article, alinea, contenu):
     position_article = trouve_article(article, contenu_texte)
     print("Article du texte:", contenu_texte[position_article][:20])
 
-    position_alinea = position_article + alinea*2
+    if alinea is None:
+        position_alinea = position_article + 1
+        while True:
+            ligne = contenu_texte[position_alinea]
+            if ligne.startswith("#"):
+                break
+            position_alinea += 1
+        position_alinea -= 2
+    else:
+        position_alinea = position_article + alinea*2
+
     print("Contenu alinea:", contenu_texte[position_alinea][:20])
     
     nouveau_contenu_texte = contenu_texte[:position_alinea+1]
