@@ -1,7 +1,7 @@
 from art69 import *
 
 
-def remplacer_contenu(texte, article, alinea=None, contenu_avant, contenu_apres):
+def remplacer_contenu(texte, article, contenu_avant, contenu_apres, alinea=None):
     print("Remplacement")
     fichier = trouve_fichier_du_texte(texte)
     print("Fichier du texte:", fichier)
@@ -12,11 +12,20 @@ def remplacer_contenu(texte, article, alinea=None, contenu_avant, contenu_apres)
     position_article = trouve_article(article, contenu_texte)
     print("Article du texte:", contenu_texte[position_article][:20])
 
-    position_alinea = position_article + alinea*2
-    print("Alinea:", contenu_texte[position_alinea][:20])
-
-    contenu_texte[position_alinea] = contenu_texte[position_alinea] \
-        .replace(contenu_avant, contenu_apres)
+    if alinea:
+        position_alinea = position_article + alinea*2
+        print("Alinea:", contenu_texte[position_alinea][:20])
+        contenu_texte[position_alinea] = contenu_texte[position_alinea] \
+            .replace(contenu_avant, contenu_apres)
+    else:
+        position_alinea = position_article
+        while True:
+            position_alinea += 2
+            contenu = contenu_texte[position_alinea]
+            if contenu.startswith("#"):
+                break
+            contenu_texte[position_alinea] = contenu \
+                .replace(contenu_avant, contenu_apres)
 
     with open(fichier, 'w') as f:
         f.write('\n'.join(contenu_texte))
@@ -46,7 +55,7 @@ remplacer_contenu(
 """
 II. – À l’article L. 331‑6, la référence : « L. 331‑31 » est remplacée par la référence : « L. 331‑28 » et les références : « L. 331‑33 à L. 331‑35 et L. 331‑37 » sont remplacés par les références : « L. 331‑30 à L. 331‑32 et L. 331‑34 ».
 """
-"""
+
 remplacer_contenu(
     contenu_avant="L. 331-31",
     contenu_apres="L. 331-28",
@@ -58,9 +67,18 @@ remplacer_contenu(
     contenu_apres="L. 331-30 à L. 331-32 et L. 331-34",
     article="L331-6",
     texte="code de la propriété intellectuelle")
-"""
+
 """
 III. –À l’article L. 331‑7, la référence : « L. 331‑31 » est remplacée par la référence : « L. 331‑28 ».
+"""
+
+remplacer_contenu(
+    contenu_avant="L. 331-31",
+    contenu_apres="L. 331-28",
+    article="L331-7",
+    texte="code de la propriété intellectuelle")
+
+"""
 
 IV. – L’intitulé de la section 3 du chapitre Ier du titre III du livre III du même code est ainsi rédigé : « Autorité de régulation de la communication audiovisuelle et numérique ».
 
