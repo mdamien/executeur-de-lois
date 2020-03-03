@@ -17,6 +17,7 @@ def trouve_fichier_du_texte(texte):
     raise Exception("Texte introuvable: " + texte)
 
 def trouve_article(article, contenu_texte):
+    article = article.replace('‑', '-')
     for i, line in enumerate(contenu_texte):
         if 'Article %s' % article in line:
             return i
