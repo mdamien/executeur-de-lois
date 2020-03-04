@@ -18,14 +18,23 @@ def remplacer_contenu(texte, article, contenu_avant, contenu_apres, alinea=None)
         if type(alinea) is int:
             alinea = [alinea]
         for alinea_n in alinea:
-            position_alinea = position_article + alinea_n*2
+        
+            if alinea_n == -1:
+                position_alinea = position_article
+                while True:
+                    if contenu_texte[position_alinea].startswith("#"):
+                        break
+                    position_alinea += 1
+            else:
+                position_alinea = position_article + alinea_n*2
+
             print("Alinea:", contenu_texte[position_alinea][:30])
             contenu_texte[position_alinea] = contenu_texte[position_alinea] \
                 .replace(contenu_avant, contenu_apres)
     else:
         position_alinea = position_article
         while True:
-            position_alinea += 2
+            position_alinea += 1
             contenu = contenu_texte[position_alinea]
             if contenu.startswith("#"):
                 break
@@ -209,22 +218,18 @@ remplacer_contenu(
 """
 2° Au cinquième alinéa, les mots : « La commission de protection des droits » sont remplacés par les mots : « l’Autorité » et les mots : « de la République » sont remplacés par les mots : « de la République ou sur la base d’un constat d’huissier établi à la demande d’un ayant‑droit » ;
 """
-"""
 remplacer_contenu(
-    alinea=5,
+    # alinea=5, # bug archeolex
     contenu_avant="La commission de protection des droits",
     contenu_apres="l’Autorité",
     article="L331‑24",
-    texte="code de la propriété intellectuelle") # bug archeolex
-"""
-"""
+    texte="code de la propriété intellectuelle")
 remplacer_contenu(
-    alinea=5,
+    # alinea=5, # bug archeolex
     contenu_avant="de la République",
     contenu_apres="de la République ou sur la base d’un constat d’huissier établi à la demande d’un ayant‑droit",
     article="L331‑24",
-    texte="code de la propriété intellectuelle")  # bug archeolex
-"""
+    texte="code de la propriété intellectuelle")
 """
 3° Au dernier alinéa, il est ajouté une phrase ainsi rédigée :
 
@@ -301,11 +306,33 @@ XIX. – L’article L. 331‑29 est ainsi modifié :
 1° Au premier alinéa, les mots : « la Haute Autorité » sont remplacés par les mots : « l’Autorité de régulation de la communication audiovisuelle et numérique » et les mots : « de la présente sous‑section » sont remplacés par les mots : « du présent paragraphe » ;
 
 2° Au deuxième alinéa, les mots : « par la commission de protection des droits, des mesures prévues à la présente sous‑section » sont remplacés par les mots : « par l’Autorité, des mesures prévues au présent paragraphe » ;
+"""
+remplacer_contenu(
+    # alinea=2,
+    contenu_avant="par la commission de protection des droits, des mesures prévues à la présente sous‑section".replace('‑', '-'),
+    contenu_apres="par l’Autorité, des mesures prévues au présent paragraphe",
+    article="L331‑29",
+    texte="code de la propriété intellectuelle")
+"""
 
 3° Au dernier alinéa, les mots : « de la Haute Autorité » sont remplacés par les mots : « de l’Autorité ».
+"""
+remplacer_contenu(
+    # alinea=-1,
+    contenu_avant="de la Haute Autorité",
+    contenu_apres="de l’Autorité",
+    article="L331‑29",
+    texte="code de la propriété intellectuelle")
+"""
 
 XX. – À l’article L. 331‑30, les mots : « le collège et la commission de protection des droits de la Haute Autorité » sont remplacés par les mots : « l’Autorité de régulation de la communication audiovisuelle et numérique ».
-
+"""
+remplacer_contenu(
+    contenu_avant="le collège et la commission de protection des droits de la Haute Autorité",
+    contenu_apres="l’Autorité de régulation de la communication audiovisuelle et numérique",
+    article="L331‑30",
+    texte="code de la propriété intellectuelle")
+"""
 XXI. – Après l’article L. 331‑30 sont insérés des articles L. 331‑30‑1 à L. 331‑30‑4 ainsi rédigés :
 
 « Art. L. 331‑30‑1. – I. – L’Autorité de régulation de la communication audiovisuelle et numérique évalue l’efficacité des mesures de protection des œuvres ou objets protégés prises par les fournisseurs de services de partage de contenus en ligne mentionnés à l’article L. 137‑1.
