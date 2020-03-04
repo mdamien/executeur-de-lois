@@ -7,16 +7,21 @@ def remplacer_contenu(texte, article, contenu_avant, contenu_apres, alinea=None)
     print("Fichier du texte:", fichier)
     
     with open(fichier) as f:
-        contenu_texte = f.read().split("\n")
+        contenu_texte = f.read()
+        contenu_texte_avant = contenu_texte
+        contenu_texte = contenu_texte.split("\n")
 
     position_article = trouve_article(article, contenu_texte)
-    print("Article du texte:", contenu_texte[position_article][:20])
+    print("Article du texte:", contenu_texte[position_article][:30])
 
     if alinea:
-        position_alinea = position_article + alinea*2
-        print("Alinea:", contenu_texte[position_alinea][:20])
-        contenu_texte[position_alinea] = contenu_texte[position_alinea] \
-            .replace(contenu_avant, contenu_apres)
+        if type(alinea) is int:
+            alinea = [alinea]
+        for alinea_n in alinea:
+            position_alinea = position_article + alinea_n*2
+            print("Alinea:", contenu_texte[position_alinea][:30])
+            contenu_texte[position_alinea] = contenu_texte[position_alinea] \
+                .replace(contenu_avant, contenu_apres)
     else:
         position_alinea = position_article
         while True:
@@ -27,8 +32,10 @@ def remplacer_contenu(texte, article, contenu_avant, contenu_apres, alinea=None)
             contenu_texte[position_alinea] = contenu \
                 .replace(contenu_avant, contenu_apres)
 
+    contenu_texte = '\n'.join(contenu_texte)
+    assert contenu_texte != contenu_texte_avant
     with open(fichier, 'w') as f:
-        f.write('\n'.join(contenu_texte))
+        f.write(contenu_texte)
 
 
 """
@@ -109,7 +116,23 @@ X. – L’article L. 331‑21 est ainsi modifié :
 1° À la première phrase du premier alinéa, les mots : « , par la commission de protection des droits, de ses attributions, la Haute Autorité dispose d’agents publics assermentés habilités par le président de la Haute Autorité » sont remplacés par les mots : « des missions mentionnées à l’article L. 331‑12, l’Autorité de régulation de la communication audiovisuelle et numérique dispose d’agents publics assermentés et habilités par son président » ;
 
 2° Au deuxième alinéa, les mots : « Les membres de la commission de protection des droits et les agents mentionnés au premier alinéa reçoivent les saisines adressées à ladite commission » sont remplacés par les mots : « I. – Pour l’exercice de la mission mentionnée aux articles L. 331‑18 à L. 331‑24, l’Autorité de régulation de la communication audiovisuelle et numérique et les agents mentionnés au premier alinéa reçoivent les saisines adressées à l’Autorité » et la référence : « L. 331‑23 » est remplacée par la référence : « L. 331‑18 » ;
+"""
 
+remplacer_contenu(
+    alinea=2,
+    contenu_avant="Les membres de la commission de protection des droits et les agents mentionnés au premier alinéa reçoivent les saisines adressées à ladite commission",
+    contenu_apres="I. – Pour l’exercice de la mission mentionnée aux articles L. 331‑18 à L. 331‑24, l’Autorité de régulation de la communication audiovisuelle et numérique et les agents mentionnés au premier alinéa reçoivent les saisines adressées à l’Autorité",
+    article="L331‑21",
+    texte="code de la propriété intellectuelle")
+"""
+remplacer_contenu(
+    alinea=2,
+    contenu_avant="L. 331-23",
+    contenu_apres="L. 331-18",
+    article="L331‑21",
+    texte="code de la propriété intellectuelle") # bugbug ?
+"""
+"""
 3° Au cinquième alinéa, les mots : « l’adresse électronique et » sont remplacés par les mots : « la ou les adresses électroniques dont ils disposent, ainsi que » ;
 
 4° Après le cinquième alinéa, sont insérés huit alinéas ainsi rédigés :
@@ -137,21 +160,68 @@ XII. – L’article L. 331‑22 est ainsi modifié :
 1° Le premier alinéa est supprimé ;
 
 2° Au second alinéa, la référence : « L. 331‑21 » est remplacée par la référence : « L. 331‑14 ».
+"""
 
+remplacer_contenu(
+    alinea=2,
+    contenu_avant="L. 331-21",
+    contenu_apres="L. 331-14",
+    article="L331‑22",
+    texte="code de la propriété intellectuelle")
+
+"""
 XIII. – L’article L. 331‑23 est ainsi modifié :
 
 1° Au premier alinéa, les mots : « la Haute Autorité » sont remplacés par les mots : « l’Autorité de régulation de la communication audiovisuelle et numérique développe des outils visant à renforcer la visibilité de l’offre légale auprès du public et » ;
+"""
 
+remplacer_contenu(
+    alinea=2,
+    contenu_avant="la Haute Autorité",
+    contenu_apres="l’Autorité de régulation de la communication audiovisuelle et numérique développe des outils visant à renforcer la visibilité de l’offre légale auprès du public et",
+    article="L331‑23",
+    texte="code de la propriété intellectuelle")
+"""
 2° Au premier et au cinquième alinéas, les mots : « l’article L. 331‑34 » sont remplacés par les mots : « l’article 18 de la loi n° 86‑1067 du 30 septembre 1986 relative à la liberté de communication » ;
-
+"""
+"""
+remplacer_contenu(
+    alinea=[1, 5],
+    contenu_avant="l’article L. 331-34",
+    contenu_apres="l’article 18 de la loi n° 86‑1067 du 30 septembre 1986 relative à la liberté de communication",
+    article="L331‑23",
+    texte="code de la propriété intellectuelle") # bug ??
+"""
+"""
 3  Le deuxième, le troisième et le quatrième alinéa sont supprimés.
 
 XIV. – L’article L. 331‑24 est ainsi modifié :
 
 1° Au premier alinéa, les mots : « La commission de protection des droit » sont remplacés par les mots : « l’Autorité de régulation de la communication audiovisuelle et numérique » ;
 
+"""
+remplacer_contenu(
+    alinea=1,
+    contenu_avant="La commission de protection des droit",
+    contenu_apres="l’Autorité de régulation de la communication audiovisuelle et numérique",
+    article="L331‑24",
+    texte="code de la propriété intellectuelle") # bug: oubli du "S" à "protection des droit"
+"""
 2° Au cinquième alinéa, les mots : « La commission de protection des droits » sont remplacés par les mots : « l’Autorité » et les mots : « de la République » sont remplacés par les mots : « de la République ou sur la base d’un constat d’huissier établi à la demande d’un ayant‑droit » ;
-
+"""
+remplacer_contenu(
+    alinea=5,
+    contenu_avant="La commission de protection des droits",
+    contenu_apres="l’Autorité",
+    article="L331‑24",
+    texte="code de la propriété intellectuelle")
+remplacer_contenu(
+    alinea=5,
+    contenu_avant="de la République",
+    contenu_apres="de la République ou sur la base d’un constat d’huissier établi à la demande d’un ayant‑droit",
+    article="L331‑24",
+    texte="code de la propriété intellectuelle")
+"""
 3° Au dernier alinéa, il est ajouté une phrase ainsi rédigée :
 
 « Ce délai est de douze mois s’agissant des informations transmises par le procureur de la République. »
