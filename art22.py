@@ -1,6 +1,20 @@
 from art69 import *
 
 
+def trouve_alinea(position_article, alinea, contenu_texte):
+    position_alinea = position_article + 2
+    compteur_alinea = 0
+    while True:
+        contenu = contenu_texte[position_alinea]
+        
+        if contenu:
+            compteur_alinea += 1
+            if compteur_alinea == alinea:
+                return position_alinea
+            
+        position_alinea += 1
+
+
 def remplacer_contenu(texte, article, contenu_avant, contenu_apres, alinea=None):
     print("Remplacement")
     fichier = trouve_fichier_du_texte(texte)
@@ -18,16 +32,7 @@ def remplacer_contenu(texte, article, contenu_avant, contenu_apres, alinea=None)
         if type(alinea) is int:
             alinea = [alinea]
         for alinea_n in alinea:
-        
-            if alinea_n == -1:
-                position_alinea = position_article
-                while True:
-                    if contenu_texte[position_alinea].startswith("#"):
-                        break
-                    position_alinea += 1
-            else:
-                position_alinea = position_article + alinea_n*2
-
+            position_alinea = trouve_alinea(position_article, alinea_n, contenu_texte)
             print("Alinea:", contenu_texte[position_alinea][:30])
             contenu_texte[position_alinea] = contenu_texte[position_alinea] \
                 .replace(contenu_avant, contenu_apres)
@@ -219,13 +224,13 @@ remplacer_contenu(
 2° Au cinquième alinéa, les mots : « La commission de protection des droits » sont remplacés par les mots : « l’Autorité » et les mots : « de la République » sont remplacés par les mots : « de la République ou sur la base d’un constat d’huissier établi à la demande d’un ayant‑droit » ;
 """
 remplacer_contenu(
-    # alinea=5, # bug archeolex
+    alinea=5,
     contenu_avant="La commission de protection des droits",
     contenu_apres="l’Autorité",
     article="L331‑24",
     texte="code de la propriété intellectuelle")
 remplacer_contenu(
-    # alinea=5, # bug archeolex
+    alinea=5,
     contenu_avant="de la République",
     contenu_apres="de la République ou sur la base d’un constat d’huissier établi à la demande d’un ayant‑droit",
     article="L331‑24",
@@ -308,7 +313,7 @@ XIX. – L’article L. 331‑29 est ainsi modifié :
 2° Au deuxième alinéa, les mots : « par la commission de protection des droits, des mesures prévues à la présente sous‑section » sont remplacés par les mots : « par l’Autorité, des mesures prévues au présent paragraphe » ;
 """
 remplacer_contenu(
-    # alinea=2,
+    alinea=2,
     contenu_avant="par la commission de protection des droits, des mesures prévues à la présente sous‑section".replace('‑', '-'),
     contenu_apres="par l’Autorité, des mesures prévues au présent paragraphe",
     article="L331‑29",
@@ -390,9 +395,23 @@ XXII. – L’article L. 331‑31 est ainsi modifié :
 1° Au premier alinéa, les mots : « la Haute Autorité » sont remplacés par les mots : « l’Autorité de régulation de la communication audiovisuelle et numérique » ;
 
 2° Au quatrième et au cinquième alinéas, les mots : « à compter du 1er janvier 2009 » sont supprimés ;
-
+"""
+remplacer_contenu(
+    alinea=[4, 5],
+    contenu_avant="à compter du 1er janvier 2009",
+    contenu_apres="",
+    article="L331‑31",
+    texte="code de la propriété intellectuelle")
+"""
 3° Au sixième alinéa, les mots : « , à compter du 1er janvier 2009, » sont supprimés ;
-
+"""
+remplacer_contenu(
+    alinea=6,
+    contenu_avant=", à compter du 1er janvier 2009,",
+    contenu_apres="",
+    article="L331‑31",
+    texte="code de la propriété intellectuelle")
+"""
 4° Au neuvième alinéa, les mots : « la Haute Autorité » sont remplacés par les mots : « l’Autorité » et les mots : « L. 331‑33 à L. 331‑35 et L. 331‑37 du présent code » sont remplacés par les mots : « L. 331‑30 à L. 331‑32 et L  331‑34 du présent code ».
 
 XXIII. – L’article L. 331‑32 est ainsi modifié :
