@@ -209,18 +209,22 @@ remplacer_contenu(
 """
 2° Au cinquième alinéa, les mots : « La commission de protection des droits » sont remplacés par les mots : « l’Autorité » et les mots : « de la République » sont remplacés par les mots : « de la République ou sur la base d’un constat d’huissier établi à la demande d’un ayant‑droit » ;
 """
+"""
 remplacer_contenu(
     alinea=5,
     contenu_avant="La commission de protection des droits",
     contenu_apres="l’Autorité",
     article="L331‑24",
-    texte="code de la propriété intellectuelle")
+    texte="code de la propriété intellectuelle") # bug archeolex
+"""
+"""
 remplacer_contenu(
     alinea=5,
     contenu_avant="de la République",
     contenu_apres="de la République ou sur la base d’un constat d’huissier établi à la demande d’un ayant‑droit",
     article="L331‑24",
-    texte="code de la propriété intellectuelle")
+    texte="code de la propriété intellectuelle")  # bug archeolex
+"""
 """
 3° Au dernier alinéa, il est ajouté une phrase ainsi rédigée :
 
@@ -229,25 +233,67 @@ remplacer_contenu(
 XV. – L’article L. 331‑25 est ainsi modifié :
 
 1° Au premier alinéa, les mots : « la commission de protection des droits peut envoyer à l’abonné, sous son timbre et pour son compte, par la voie électronique et par l’intermédiaire de la personne dont l’activité est d’offrir un accès à des services de communication au public en ligne ayant conclu un contrat avec l’abonné » sont remplacés par les mots : « l’Autorité de régulation de la communication audiovisuelle et numérique peut envoyer à l’abonné, sous son timbre et pour son compte, par la voie électronique ou par lettre simple » ;
-
+"""
+remplacer_contenu(
+    alinea=1,
+    contenu_avant="la commission de protection des droits peut envoyer à l’abonné, sous son timbre et pour son compte, par la voie électronique et par l’intermédiaire de la personne dont l’activité est d’offrir un accès à des services de communication au public en ligne ayant conclu un contrat avec l’abonné".replace('’', "'"),
+    contenu_apres="l’Autorité de régulation de la communication audiovisuelle et numérique peut envoyer à l’abonné, sous son timbre et pour son compte, par la voie électronique ou par lettre simple".replace('’', "'"),
+    article="L331‑25",
+    texte="code de la propriété intellectuelle") # bug ? apostophe normalisée
+"""
 2° Au second alinéa, les mots : « la commission » sont remplacés par les mots : « l’Autorité » ;
-
+"""
+remplacer_contenu(
+    alinea=2,
+    contenu_avant="la commission",
+    contenu_apres="l’Autorité",
+    article="L331‑25",
+    texte="code de la propriété intellectuelle")
+"""
 3° Au troisième alinéa, les mots : « En revanche, elles ne divulguent pas » sont remplacés par les mots : « Elles précisent » et la dernière phrase est remplacée par la phrase suivante :
-
+"""
+remplacer_contenu(
+    alinea=3,
+    contenu_avant="En revanche, elles ne divulguent pas",
+    contenu_apres="Elles précisent",
+    article="L331‑25",
+    texte="code de la propriété intellectuelle")
+# TODO: phrase suivante
+"""
 « Elles indiquent les coordonnées postales et électroniques où leur destinataire peut adresser, s’il le souhaite, des observations à l’Autorité » ;
 
 4° Il est inséré un dernier alinéa ainsi rédigé :
 
 « L’Autorité publie, dans le rapport mentionné à l’article 18 de la loi n° 86‑1067 du 30 septembre 1986 relative à la liberté de communication, des indicateurs synthétiques indiquant le nombre de saisines reçues en application de l’article L. 331‑18 et le nombre de recommandations adressées sur le fondement du présent article. »
 
+"""
+inserer(
+    article="L331‑25",
+    texte="code de la propriété intellectuelle",
+    contenu="L’Autorité publie, dans le rapport mentionné à l’article 18 de la loi n° 86‑1067 du 30 septembre 1986 relative à la liberté de communication, des indicateurs synthétiques indiquant le nombre de saisines reçues en application de l’article L. 331‑18 et le nombre de recommandations adressées sur le fondement du présent article.")
+"""
 XVI. – L’article L. 331‑26 est abrogé.
 
 XVII. – Au premier alinéa de l’article L. 331‑27, les mots : « la commission de protection des droits » sont remplacés par les mots : « l’Autorité de régulation de la communication audiovisuelle et numérique ».
-
+"""
+remplacer_contenu(
+    alinea=1,
+    contenu_avant="la commission de protection des droits",
+    contenu_apres="l’Autorité de régulation de la communication audiovisuelle et numérique",
+    article="L331‑27",
+    texte="code de la propriété intellectuelle")
+"""
 XVIII. – L’article L. 331‑28 est ainsi modifié :
 
 1° Au premier alinéa, les mots : « la commission de protection des droits » sont remplacés par les mots : « l’Autorité de régulation de la communication audiovisuelle et numérique » ;
-
+"""
+remplacer_contenu(
+    alinea=1,
+    contenu_avant="La commission de protection des droits", # bug majuscule
+    contenu_apres="l’Autorité de régulation de la communication audiovisuelle et numérique",
+    article="L331‑28",
+    texte="code de la propriété intellectuelle")
+"""
 2° Au deuxième alinéa, les mots : « la commission de protection des droits » sont remplacés par les mots : « l’Autorité » et les mots : « la commission procède » sont remplacés par les mots : « l’Autorité procède ».
 
 XIX. – L’article L. 331‑29 est ainsi modifié :
