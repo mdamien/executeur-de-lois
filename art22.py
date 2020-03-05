@@ -413,39 +413,128 @@ remplacer_contenu(
     texte="code de la propriété intellectuelle")
 """
 4° Au neuvième alinéa, les mots : « la Haute Autorité » sont remplacés par les mots : « l’Autorité » et les mots : « L. 331‑33 à L. 331‑35 et L. 331‑37 du présent code » sont remplacés par les mots : « L. 331‑30 à L. 331‑32 et L  331‑34 du présent code ».
-
+"""
+remplacer_contenu(
+    alinea=9,
+    contenu_avant="la Haute Autorité",
+    contenu_apres="l’Autorité",
+    article="L331‑31",
+    texte="code de la propriété intellectuelle")
+remplacer_contenu(
+    alinea=9,
+    contenu_avant="L. 331‑33 à L. 331‑35 et L. 331‑37 du présent code".replace('‑','-'),
+    contenu_apres="L. 331‑30 à L. 331‑32 et L  331‑34 du présent code".replace('‑','-'),
+    article="L331‑31",
+    texte="code de la propriété intellectuelle")
+"""
 XXIII. – L’article L. 331‑32 est ainsi modifié :
 
 1° À la première phrase du premier alinéa, les mots : « à la Haute Autorité » sont remplacés par les mots : « à l’Autorité de régulation de la communication audiovisuelle et numérique » ;
-
+"""
+remplacer_contenu(
+    # phrase=1,
+    alinea=1,
+    contenu_avant="à la Haute Autorité",
+    contenu_apres="à l’Autorité de régulation de la communication audiovisuelle et numérique",
+    article="L331‑32",
+    texte="code de la propriété intellectuelle")
+"""
 2° À la seconde phrase du premier alinéa, les mots : « deux mois » sont remplacés par les mots : « quatre mois » ;
-
+"""
+remplacer_contenu(
+    # phrase=2,
+    alinea=1,
+    contenu_avant="deux mois",
+    contenu_apres="quatre mois",
+    article="L331‑32",
+    texte="code de la propriété intellectuelle")
+"""
 3° À la deuxième phrase du premier alinéa et aux quatrième et cinquième alinéas, les mots : « la Haute Autorité » sont remplacés par les mots : « l’Autorité » ;
-
+"""
+remplacer_contenu(
+    # phrase=2,
+    alinea=[1, 4, 5],
+    contenu_avant="la Haute Autorité",
+    contenu_apres="l’Autorité",
+    article="L331‑32",
+    texte="code de la propriété intellectuelle")
+"""
 4° Au sixième et au dernier alinéas, les mots : « de la Haute Autorité » sont remplacés par les mots : « de l’Autorité » ;
-
+"""
+remplacer_contenu(
+    # alinea=[6, -1],
+    contenu_avant="de la Haute Autorité",
+    contenu_apres="de l’Autorité",
+    article="L331‑32",
+    texte="code de la propriété intellectuelle")
+"""
 5° Au dernier alinéa, les mots : « à la Haute Autorité » sont remplacés par les mots : « à l’Autorité ».
 
+"""
+remplacer_contenu(
+    # alinea=-1,
+    contenu_avant="à la Haute Autorité",
+    contenu_apres="à l’Autorité",
+    article="L331‑32",
+    texte="code de la propriété intellectuelle")
+"""
 XXIV. – À l’article L. 331‑33, la référence : « L. 331‑31 » est remplacée par la référence : « L. 331‑28 » et les mots : « la Haute Autorité » sont remplacés par les mots : « l’Autorité de régulation de la communication audiovisuelle et numérique ».
-
+"""
+remplacer_contenu(
+    # alinea=-1,
+    contenu_avant="L. 331‑31".replace('‑','-'),
+    contenu_apres="L. 331‑28".replace('‑','-'),
+    article="L331‑33",
+    texte="code de la propriété intellectuelle")
+remplacer_contenu(
+    # alinea=-1,
+    contenu_avant="la Haute Autorité",
+    contenu_apres="l’Autorité de régulation de la communication audiovisuelle et numérique",
+    article="L331‑33",
+    texte="code de la propriété intellectuelle")
+"""
 XXV. – L’article L. 331‑34 est ainsi modifié :
 
 1° Au début du premier alinéa, est ajoutée la mention : « I. – » et les mots : « la Haute Autorité » sont remplacés par les mots : « l’Autorité de régulation de la communication audiovisuelle et numérique » ;
 
 2° Sont insérés deux alinéas ainsi rédigés :
+"""
+contenu = """« II. – Au titre de sa participation à la mission de facilitation de l’accès des personnes en situation de handicap aux œuvres protégées par un droit d’auteur ou un droit voisin, l’Autorité peut recueillir auprès des éditeurs, de la Bibliothèque nationale de France et des personnes morales et établissements mentionnées au 7° de l’article L. 122‑5 toutes informations et document utiles. Elle peut à ce titre mettre en demeure les éditeurs de respecter les obligations prévues au 2° de l’article L. 122‑5‑1.
 
-« II. – Au titre de sa participation à la mission de facilitation de l’accès des personnes en situation de handicap aux œuvres protégées par un droit d’auteur ou un droit voisin, l’Autorité peut recueillir auprès des éditeurs, de la Bibliothèque nationale de France et des personnes morales et établissements mentionnées au 7° de l’article L. 122‑5 toutes informations et document utiles. Elle peut à ce titre mettre en demeure les éditeurs de respecter les obligations prévues au 2° de l’article L. 122‑5‑1.
+« L’Autorité peut rendre publique ces mises en demeure, qui ne peuvent conduire à des sanctions. »"""
 
-« L’Autorité peut rendre publique ces mises en demeure, qui ne peuvent conduire à des sanctions. »
-
+contenu = contenu.replace('« ', '') \
+    .replace('» ;', '') \
+    .replace('»', '') \
+    .strip()
+inserer(
+    article="L331‑34",
+    texte="code de la propriété intellectuelle",
+    contenu=contenu)
+"""
 XXVI. – L’article L. 331‑35 est ainsi modifié :
 
 1° Au premier alinéa, les mots : « la Haute Autorité » sont remplacés par les mots : « l’Autorité de régulation de la communication audiovisuelle et numérique » ;
-
+"""
+remplacer_contenu(
+    alinea=1,
+    contenu_avant="la Haute Autorité",
+    contenu_apres="l’Autorité de régulation de la communication audiovisuelle et numérique",
+    article="L331‑35",
+    texte="code de la propriété intellectuelle")
+"""
 2° Au deuxième alinéa, les mots : « la Haute Autorité » sont remplacés par les mots : « l’Autorité » et il est ajouté une phrase ainsi rédigée :
 
 « À compter de sa saisine, l’Autorité dispose d’un délai de quatre mois, renouvelable deux mois, pour rendre sa décision. »
-
+"""
+remplacer_contenu(
+    alinea=2,
+    contenu_avant="la Haute Autorité",
+    contenu_apres="l’Autorité de régulation de la communication audiovisuelle et numérique",
+    article="L331‑35",
+    texte="code de la propriété intellectuelle")
+# TODO: phrase
+"""
 XXVII. – L’article L. 331‑36 est ainsi modifié :
 
 1° Au premier alinéa, les mots : « La Haute Autorité » sont remplacés par les mots : « L’Autorité de régulation de la communication audiovisuelle et numérique », la référence : « l’article L. 331‑32 » est remplacée par la référence : « l’article L. 331‑29 » et il est ajouté une phrase ainsi rédigée :
