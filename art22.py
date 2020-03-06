@@ -1,5 +1,31 @@
 from art69 import *
 
+def pre_traite_contenu(contenu):
+    contenu = contenu.replace('« ', '') \
+        .replace('» ;', '') \
+        .replace('»', '') \
+        .strip()
+
+    contenu = contenu.split('\n')
+    nouveau_contenu = []
+    i = 0
+    while i < len(contenu):
+        ligne = contenu[i]
+        if ligne.startswith("Section"):
+            nouveau_contenu.append("#### %s : %s" % (ligne, contenu[i+1]))
+            i += 1
+        elif ligne.startswith("Art. L."):
+            ligne = ligne.replace("Art. L. ", "##### Article L")
+            art, art_contenu = ligne.split(".", maxsplit=1)
+            nouveau_contenu.append(art)
+            nouveau_contenu.append('')
+            nouveau_contenu.append(art_contenu[3:])
+        else:
+            nouveau_contenu.append(ligne)
+        i += 1
+    contenu = '\n'.join(nouveau_contenu)
+    return contenu
+
 
 def trouve_alinea(position_article, alinea, contenu_texte):
     position_alinea = position_article + 2
@@ -339,8 +365,8 @@ remplacer_contenu(
     texte="code de la propriété intellectuelle")
 """
 XXI. – Après l’article L. 331‑30 sont insérés des articles L. 331‑30‑1 à L. 331‑30‑4 ainsi rédigés :
-
-« Art. L. 331‑30‑1. – I. – L’Autorité de régulation de la communication audiovisuelle et numérique évalue l’efficacité des mesures de protection des œuvres ou objets protégés prises par les fournisseurs de services de partage de contenus en ligne mentionnés à l’article L. 137‑1.
+"""
+contenu = """« Art. L. 331‑30‑1. – I. – L’Autorité de régulation de la communication audiovisuelle et numérique évalue l’efficacité des mesures de protection des œuvres ou objets protégés prises par les fournisseurs de services de partage de contenus en ligne mentionnés à l’article L. 137‑1.
 
 « Ces fournisseurs de services adressent chaque année à l’Autorité une déclaration précisant les mesures mises en œuvre, les conditions de leur déploiement et de leur fonctionnement, leur niveau d’efficacité et les modalités de collaboration avec les titulaires de droits.
 
@@ -389,11 +415,25 @@ XXI. – Après l’article L. 331‑30 sont insérés des articles L. 331‑30�
 « Pour faciliter l’exécution des décisions judiciaires mentionnées au premier alinéa, l’Autorité adopte des modèles d’accords type qu’elle invite les ayants droits et les personnes mentionnées au 1 du I de l’article 6 de la loi n° 2004‑575 du 21 juin 2004 pour la confiance dans l’économie numérique concernées par la décision à conclure. L’accord conclu entre les parties détermine notamment leurs conditions d’information réciproque sur l’existence de violations de la décision judiciaire par les ayants droits. Il engage les personnes mentionnées au 1 du I de l’article 6 de la loi n° 2004‑575 du 21 juin 2004 pour la confiance dans l’économie numérique à prendre les mesures de blocage ou de déréférencement prévues par la décision judiciaire. 
 
 « II. – Lorsqu’il n’est pas procédé au blocage ou au déréférencement des contenus en application des trois premiers alinéas, l’autorité judiciaire peut être saisie, en référé ou sur requête pour ordonner toute mesure destinée à faire cesser l’accès à ces contenus. »
+"""
 
+inserer(
+    article="L331‑30",
+    contenu=pre_traite_contenu(contenu),
+    texte="code de la propriété intellectuelle")
+
+"""
 XXII. – L’article L. 331‑31 est ainsi modifié :
 
 1° Au premier alinéa, les mots : « la Haute Autorité » sont remplacés par les mots : « l’Autorité de régulation de la communication audiovisuelle et numérique » ;
-
+"""
+remplacer_contenu(
+    alinea=1,
+    contenu_avant="la Haute Autorité",
+    contenu_apres="l’Autorité de régulation de la communication audiovisuelle et numérique",
+    article="L331‑31",
+    texte="code de la propriété intellectuelle")
+"""
 2° Au quatrième et au cinquième alinéas, les mots : « à compter du 1er janvier 2009 » sont supprimés ;
 """
 remplacer_contenu(
@@ -541,6 +581,21 @@ XXVII. – L’article L. 331‑36 est ainsi modifié :
 
 « L’Autorité peut déterminer dans le cadre de ses avis, les éléments constitutifs de la documentation technique prévue à l’article L. 331‑29. » ;
 
+"""
+remplacer_contenu(
+    alinea=1,
+    contenu_avant="La Haute Autorité",
+    contenu_apres="L’Autorité de régulation de la communication audiovisuelle et numérique",
+    article="L331‑36",
+    texte="code de la propriété intellectuelle")
+remplacer_contenu(
+    alinea=1,
+    contenu_avant="l'article L. 331-32",
+    contenu_apres="l'article L. 331-29",
+    article="L331‑36",
+    texte="code de la propriété intellectuelle")
+# TODO: phrase
+"""
 2° Au second alinéa, la référence : « L. 331‑31 » est remplacée par la référence : « L. 331‑28 ».
 
 XXVIII. – Les articles L. 331‑12 à L. 331‑36, dans leur rédaction résultant du présent article font l’objet de la nouvelle numérotation suivante :
@@ -564,6 +619,23 @@ XXIX. – La sous‑section 3 du chapitre Ier du titre III du livre III est ains
 XXX. – L’article L  342‑3‑1 est ainsi modifié :
 
 1° La référence : « L. 331‑31 » est remplacée par la référence : « L. 331‑29 » et les références : « L. 331‑33 à L. 331‑35 et L. 331‑37 » sont remplacés par les références : « L. 331‑30 à L. 331‑32 et L. 331‑34 » ;
-
+"""
+remplacer_contenu(
+    contenu_avant="L. 331‑31".replace('‑','-'),
+    contenu_apres="L. 331‑29".replace('‑','-'),
+    article="L342‑3‑1",
+    texte="code de la propriété intellectuelle")
+remplacer_contenu(
+    contenu_avant="L. 331‑33 à L. 331‑35 et L. 331‑37".replace('‑','-'),
+    contenu_apres="L. 331‑30 à L. 331‑32 et L. 331‑34".replace('‑','-'),
+    article="L342‑3‑1",
+    texte="code de la propriété intellectuelle")
+"""
 2° Au dernier alinéa, les mots : « à la Haute Autorité pour la diffusion des œuvres et la protection des droits sur internet prévue à l’article L. 331‑12 » sont remplacés par les mots : « à l’Autorité de régulation de la communication audiovisuelle et numérique ».
 """
+remplacer_contenu(
+    # alinea=-1,
+    contenu_avant="à la Haute Autorité pour la diffusion des œuvres et la protection des droits sur internet prévue à l’article L. 331‑12".replace('‑','-').replace('’', "'"),
+    contenu_apres="à l’Autorité de régulation de la communication audiovisuelle et numérique",
+    article="L342‑3‑1",
+    texte="code de la propriété intellectuelle")
