@@ -198,7 +198,15 @@ supprimer(
 X. – L’article L. 331‑21 est ainsi modifié :
 
 1° À la première phrase du premier alinéa, les mots : « , par la commission de protection des droits, de ses attributions, la Haute Autorité dispose d’agents publics assermentés habilités par le président de la Haute Autorité » sont remplacés par les mots : « des missions mentionnées à l’article L. 331‑12, l’Autorité de régulation de la communication audiovisuelle et numérique dispose d’agents publics assermentés et habilités par son président » ;
-
+"""
+remplacer_contenu(
+    # phrase=1,
+    alinea=1,
+    contenu_avant=", par la commission de protection des droits, de ses attributions, la Haute Autorité dispose d’agents publics assermentés habilités par le président de la Haute Autorité".replace('‑','-').replace('’', "'"),
+    contenu_apres="des missions mentionnées à l’article L. 331‑12, l’Autorité de régulation de la communication audiovisuelle et numérique dispose d’agents publics assermentés et habilités par son président".replace('‑','-').replace('’', "'"),
+    article="L331‑21",
+    texte="code de la propriété intellectuelle")
+"""
 2° Au deuxième alinéa, les mots : « Les membres de la commission de protection des droits et les agents mentionnés au premier alinéa reçoivent les saisines adressées à ladite commission » sont remplacés par les mots : « I. – Pour l’exercice de la mission mentionnée aux articles L. 331‑18 à L. 331‑24, l’Autorité de régulation de la communication audiovisuelle et numérique et les agents mentionnés au premier alinéa reçoivent les saisines adressées à l’Autorité » et la référence : « L. 331‑23 » est remplacée par la référence : « L. 331‑18 » ;
 """
 
