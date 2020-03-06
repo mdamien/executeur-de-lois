@@ -226,10 +226,17 @@ remplacer_contenu(
 """
 """
 3° Au cinquième alinéa, les mots : « l’adresse électronique et » sont remplacés par les mots : « la ou les adresses électroniques dont ils disposent, ainsi que » ;
-
+"""
+remplacer_contenu(
+    alinea=5,
+    contenu_avant="l’adresse électronique et".replace('‑','-').replace('’', "'"),
+    contenu_apres="la ou les adresses électroniques dont ils disposent, ainsi que",
+    article="L331‑21",
+    texte="code de la propriété intellectuelle")
+"""
 4° Après le cinquième alinéa, sont insérés huit alinéas ainsi rédigés :
-
-« II. – Pour l’exercice de la mission mentionnée à l’article L. 331‑25, les agents habilités et assermentés de l’Autorité de régulation de la communication audiovisuelle et numérique peuvent constater les faits susceptibles de constituer des infractions prévues aux articles L. 335‑3 et L. 335‑4, lorsqu’elles sont commises sur les réseaux de communications électroniques utilisés pour la fourniture de services de communication au public en ligne.
+"""
+contenu = """« II. – Pour l’exercice de la mission mentionnée à l’article L. 331‑25, les agents habilités et assermentés de l’Autorité de régulation de la communication audiovisuelle et numérique peuvent constater les faits susceptibles de constituer des infractions prévues aux articles L. 335‑3 et L. 335‑4, lorsqu’elles sont commises sur les réseaux de communications électroniques utilisés pour la fourniture de services de communication au public en ligne.
 
 « Dans ce cadre, les agents habilités et assermentés de l’Autorité peuvent, sans en être tenus pénalement responsables :
 
@@ -244,7 +251,13 @@ remplacer_contenu(
 « À peine de nullité, ces actes ne peuvent avoir pour effet d’inciter autrui à commettre une infraction.
 
 « Les agents mentionnés au premier alinéa du présent II consignent les informations ainsi recueillies dans un procès‑verbal qui rend compte des conditions dans lesquelles les facultés reconnues aux 1° à 4° du présent article ont été employées. » 
-
+"""
+inserer(
+    alinea=5,
+    article="L331‑21",
+    contenu=pre_traite_contenu(contenu),
+    texte="code de la propriété intellectuelle")
+"""
 XI. – Au premier alinéa de l’article L. 331‑21‑1, les mots : « Les membres de la commission de protection des droits, ainsi que ses agents habilités et assermentés devant l’autorité judiciaire mentionnés à l’article L. 331‑21 » sont remplacés par les mots : « Le membre de l’Autorité de régulation de la communication audiovisuelle et numérique chargé d’exercer la mission de protection des œuvres et des objets protégés, ainsi que les agents habilités et assermentés devant l’autorité judiciaire mentionnés au I de l’article L. 331‑14 ».
 
 XII. – L’article L. 331‑22 est ainsi modifié :
