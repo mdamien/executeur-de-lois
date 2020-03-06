@@ -1,4 +1,5 @@
 from art69 import *
+from art15 import remplacer
 
 def pre_traite_contenu(contenu):
     contenu = contenu.replace('« ', '') \
@@ -112,6 +113,39 @@ def supprimer(texte, article, alinea=None, article_fin=None):
     with open(fichier, 'w') as f:
         f.write(contenu_texte)
 
+
+def trouve_section(section, contenu_texte, position_debut=None):
+    section = section.replace('‑', '-')
+    for i, ligne in enumerate(contenu_texte):
+        if position_debut and position_debut > i:
+            continue
+        if ligne.startswith('#') and section.lower() in ligne.lower():
+            return i
+    raise Exception("Section introuvable: " + section)
+
+
+def changer_titre(emplacement, contenu, texte):
+    print("Changement de titre")
+    fichier = trouve_fichier_du_texte(texte)
+    print("Fichier du texte:", fichier)
+    
+    with open(fichier) as f:
+        contenu_texte = f.read()
+        contenu_texte_avant = contenu_texte
+        contenu_texte = contenu_texte.split("\n")
+
+    position = 0
+    for section in reversed(emplacement.split(' du ')):
+        position = trouve_section(section, contenu_texte, position_debut=position)
+        print("Section:", contenu_texte[position][:30])
+    
+    debut_titre = contenu_texte[position].split(':')[0]
+    contenu_texte[position] = debut_titre + ': ' + contenu
+
+    contenu_texte = '\n'.join(contenu_texte)
+    with open(fichier, 'w') as f:
+        f.write(contenu_texte)
+
 """
 Le code de la propriété intellectuelle est ainsi modifié :
 
@@ -162,9 +196,19 @@ remplacer_contenu(
 """
 
 IV. – L’intitulé de la section 3 du chapitre Ier du titre III du livre III du même code est ainsi rédigé : « Autorité de régulation de la communication audiovisuelle et numérique ».
-
+"""
+changer_titre(
+    emplacement="section 3 du chapitre Ier du titre III du livre III",
+    contenu="Autorité de régulation de la communication audiovisuelle et numérique",
+    texte="code de la propriété intellectuelle")
+"""
 V. – L’intitulé de la sous‑section 1 du chapitre Ier du titre III du livre III du même code est ainsi rédigé : « Compétences et organisation en matière de protection du droit d’auteur et des droits voisins ».
-
+"""
+changer_titre(
+    emplacement="sous‑section 1 du chapitre Ier du titre III du livre III",
+    contenu="Compétences et organisation en matière de protection du droit d’auteur et des droits voisins",
+    texte="code de la propriété intellectuelle")
+"""
 VI. – L’article L. 331‑12 est abrogé.
 """
 supprimer(
@@ -173,8 +217,8 @@ supprimer(
 """
 
 VII. – L’article L. 331‑13 est remplacé par les dispositions suivantes :
-
-« L’Autorité de régulation de la communication audiovisuelle et numérique assure :
+"""
+contenu = """« L’Autorité de régulation de la communication audiovisuelle et numérique assure :
 
 « 1° Une mission d’encouragement au développement de l’offre légale et d’observation de l’utilisation licite et illicite des œuvres et des objets auxquels est attaché un droit d’auteur ou un droit voisin et des droits d’exploitation audiovisuelle prévus à l’article L. 333‑1 du code du sport sur les réseaux de communications électroniques utilisés pour la fourniture de services de communication au public en ligne ;
 
@@ -183,7 +227,12 @@ VII. – L’article L. 331‑13 est remplacé par les dispositions suivantes :
 « 3° Une mission de régulation et de veille dans le domaine des mesures techniques de protection et d’identification des œuvres et des objets protégés par un droit d’auteur ou par un droit voisin.
 
 « Au titre de ces missions, l’Autorité prend toute mesure, notamment par l’adoption de recommandations, de bonnes pratiques, de modèles et clauses types, et de codes de conduite visant à favoriser, d’une part, l’information du public sur l’existence des moyens de sécurisation mentionnés à l’article L. 331‑19 et, d’autre part, la signature d’accords volontaires susceptibles de contribuer à remédier aux atteintes au droit d’auteur et aux droits voisins ou aux droits d’exploitation audiovisuelle prévus à l’article L. 333‑1 du code du sport sur les réseaux de communications électroniques utilisés pour la fourniture de services de communication au public en ligne. »
-
+"""
+remplacer(
+    article="L331‑13",
+    contenu=pre_traite_contenu(contenu),
+    texte="code de la propriété intellectuelle")
+"""
 VIII. – L’article L. 331‑14 est remplacé par les dispositions suivantes :
 
 « Art. L. 331‑14. – Le membre mentionné à l’avant‑dernier alinéa du I de l’article 4 de la loi n° 86‑1067 du 30 septembre 1986 relative à la liberté de communication est chargé d’exercer la mission mentionnée aux articles L. 331‑18 à L. 331‑23. »

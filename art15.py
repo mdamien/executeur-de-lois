@@ -1,7 +1,17 @@
 from art69 import *
 
 
-def remplacer(texte, article, alinea_debut, alinea_fin, contenu):
+def trouve_alinea_fin(contenu_texte, position_article):
+    position_alinea = position_article
+    while True:
+        position_alinea += 1
+        contenu = contenu_texte[position_alinea]
+        if contenu.startswith("#"):
+            break
+    return position_alinea - 2
+
+
+def remplacer(texte, article, contenu, alinea_debut=1, alinea_fin=None):
     print("Remplacement")
     fichier = trouve_fichier_du_texte(texte)
     print("Fichier du texte:", fichier)
@@ -14,7 +24,10 @@ def remplacer(texte, article, alinea_debut, alinea_fin, contenu):
 
     position_debut = position_article + alinea_debut*2
     print("Alinea du début:", contenu_texte[position_debut][:20])
-    position_fin = position_article + alinea_fin*2
+    if not alinea_fin:
+        position_fin = trouve_alinea_fin(contenu_texte, position_article)
+    else:
+        position_fin = position_article + alinea_fin*2
     print("Alinea de fin:", contenu_texte[position_fin][:20])
     nouveau_contenu_texte = contenu_texte[:position_debut]
     nouveau_contenu_texte += contenu_texte[position_fin + 2:]
