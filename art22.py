@@ -78,6 +78,37 @@ def remplacer_contenu(texte, article, contenu_avant, contenu_apres, alinea=None)
         f.write(contenu_texte)
 
 
+def supprimer(texte, article, alinea=None):
+    print("Suppression")
+    fichier = trouve_fichier_du_texte(texte)
+    print("Fichier du texte:", fichier)
+    
+    with open(fichier) as f:
+        contenu_texte = f.read()
+        contenu_texte_avant = contenu_texte
+        contenu_texte = contenu_texte.split("\n")
+
+    position_article = trouve_article(article, contenu_texte)
+    print("Article du texte:", contenu_texte[position_article][:30])
+
+    if alinea:
+        position_alinea = trouve_alinea(position_article, alinea, contenu_texte)
+        print("Alinea:", contenu_texte[position_alinea][:30])
+        contenu_texte = contenu_texte[:position_alinea] + contenu_texte[:position_alinea+1]
+    else:
+        position_alinea = position_article
+        while True:
+            position_alinea += 1
+            contenu = contenu_texte[position_alinea]
+            if contenu.startswith("#"):
+                break
+        contenu_texte = contenu_texte[:position_article] + contenu_texte[position_alinea:]
+
+    contenu_texte = '\n'.join(contenu_texte)
+    assert contenu_texte != contenu_texte_avant
+    with open(fichier, 'w') as f:
+        f.write(contenu_texte)
+
 """
 Le code de la propriété intellectuelle est ainsi modifié :
 
@@ -132,6 +163,11 @@ IV. – L’intitulé de la section 3 du chapitre Ier du titre III du livre III 
 V. – L’intitulé de la sous‑section 1 du chapitre Ier du titre III du livre III du même code est ainsi rédigé : « Compétences et organisation en matière de protection du droit d’auteur et des droits voisins ».
 
 VI. – L’article L. 331‑12 est abrogé.
+"""
+supprimer(
+    article="L331-12",
+    texte="code de la propriété intellectuelle")
+"""
 
 VII. – L’article L. 331‑13 est remplacé par les dispositions suivantes :
 
