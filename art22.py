@@ -78,7 +78,7 @@ def remplacer_contenu(texte, article, contenu_avant, contenu_apres, alinea=None)
         f.write(contenu_texte)
 
 
-def supprimer(texte, article, alinea=None):
+def supprimer(texte, article, alinea=None, article_fin=None):
     print("Suppression")
     fichier = trouve_fichier_du_texte(texte)
     print("Fichier du texte:", fichier)
@@ -96,7 +96,10 @@ def supprimer(texte, article, alinea=None):
         print("Alinea:", contenu_texte[position_alinea][:30])
         contenu_texte = contenu_texte[:position_alinea] + contenu_texte[:position_alinea+1]
     else:
-        position_alinea = position_article
+        if article_fin:
+            position_alinea = trouve_article(article_fin, contenu_texte)
+        else:
+            position_alinea = position_article
         while True:
             position_alinea += 1
             contenu = contenu_texte[position_alinea]
@@ -186,7 +189,12 @@ VIII. – L’article L. 331‑14 est remplacé par les dispositions suivantes :
 « Art. L. 331‑14. – Le membre mentionné à l’avant‑dernier alinéa du I de l’article 4 de la loi n° 86‑1067 du 30 septembre 1986 relative à la liberté de communication est chargé d’exercer la mission mentionnée aux articles L. 331‑18 à L. 331‑23. »
 
 IX. – Les articles L. 331‑15 à L. 331‑20 sont abrogés.
-
+"""
+supprimer(
+    article="L331-15",
+    article_fin="L331-20",
+    texte="code de la propriété intellectuelle")
+"""
 X. – L’article L. 331‑21 est ainsi modifié :
 
 1° À la première phrase du premier alinéa, les mots : « , par la commission de protection des droits, de ses attributions, la Haute Autorité dispose d’agents publics assermentés habilités par le président de la Haute Autorité » sont remplacés par les mots : « des missions mentionnées à l’article L. 331‑12, l’Autorité de régulation de la communication audiovisuelle et numérique dispose d’agents publics assermentés et habilités par son président » ;
