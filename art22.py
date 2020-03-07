@@ -259,21 +259,19 @@ remplacer_contenu(
 """
 2° Au deuxième alinéa, les mots : « Les membres de la commission de protection des droits et les agents mentionnés au premier alinéa reçoivent les saisines adressées à ladite commission » sont remplacés par les mots : « I. – Pour l’exercice de la mission mentionnée aux articles L. 331‑18 à L. 331‑24, l’Autorité de régulation de la communication audiovisuelle et numérique et les agents mentionnés au premier alinéa reçoivent les saisines adressées à l’Autorité » et la référence : « L. 331‑23 » est remplacée par la référence : « L. 331‑18 » ;
 """
-
+remplacer_contenu(
+    alinea=2,
+    contenu_avant="L. 331-24", # bug loi: 23 -> 24
+    contenu_apres="L. 331-18",
+    article="L331‑21",
+    texte="code de la propriété intellectuelle")
 remplacer_contenu(
     alinea=2,
     contenu_avant="Les membres de la commission de protection des droits et les agents mentionnés au premier alinéa reçoivent les saisines adressées à ladite commission",
     contenu_apres="I. – Pour l’exercice de la mission mentionnée aux articles L. 331‑18 à L. 331‑24, l’Autorité de régulation de la communication audiovisuelle et numérique et les agents mentionnés au premier alinéa reçoivent les saisines adressées à l’Autorité",
     article="L331‑21",
     texte="code de la propriété intellectuelle")
-"""
-remplacer_contenu(
-    alinea=2,
-    contenu_avant="L. 331-23",
-    contenu_apres="L. 331-18",
-    article="L331‑21",
-    texte="code de la propriété intellectuelle") # bugbug ?
-"""
+
 """
 3° Au cinquième alinéa, les mots : « l’adresse électronique et » sont remplacés par les mots : « la ou les adresses électroniques dont ils disposent, ainsi que » ;
 """
