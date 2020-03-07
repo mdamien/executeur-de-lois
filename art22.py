@@ -146,6 +146,7 @@ def changer_titre(emplacement, contenu, texte):
     with open(fichier, 'w') as f:
         f.write(contenu_texte)
 
+
 """
 Le code de la propriété intellectuelle est ainsi modifié :
 
@@ -331,7 +332,6 @@ XIII. – L’article L. 331‑23 est ainsi modifié :
 
 1° Au premier alinéa, les mots : « la Haute Autorité » sont remplacés par les mots : « l’Autorité de régulation de la communication audiovisuelle et numérique développe des outils visant à renforcer la visibilité de l’offre légale auprès du public et » ;
 """
-
 remplacer_contenu(
     alinea=2,
     contenu_avant="la Haute Autorité",
@@ -341,14 +341,12 @@ remplacer_contenu(
 """
 2° Au premier et au cinquième alinéas, les mots : « l’article L. 331‑34 » sont remplacés par les mots : « l’article 18 de la loi n° 86‑1067 du 30 septembre 1986 relative à la liberté de communication » ;
 """
-"""
 remplacer_contenu(
     alinea=[1, 5],
-    contenu_avant="l’article L. 331-34",
-    contenu_apres="l’article 18 de la loi n° 86‑1067 du 30 septembre 1986 relative à la liberté de communication",
+    contenu_avant="l'article L. 331-14", # bug loi: 34 -> 14
+    contenu_apres="l'article 18 de la loi n° 86‑1067 du 30 septembre 1986 relative à la liberté de communication",
     article="L331‑23",
-    texte="code de la propriété intellectuelle") # bug ??
-"""
+    texte="code de la propriété intellectuelle")
 """
 3  Le deuxième, le troisième et le quatrième alinéa sont supprimés.
 """
