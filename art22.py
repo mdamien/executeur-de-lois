@@ -1,4 +1,5 @@
 from art69 import *
+import art69
 from art15 import remplacer
 
 def pre_traite_contenu(contenu):
@@ -42,7 +43,7 @@ def trouve_alinea(position_article, alinea, contenu_texte):
         position_alinea += 1
 
 
-def remplacer_contenu(texte, article, contenu_avant, contenu_apres, alinea=None):
+def remplacer_contenu(article, contenu_avant, contenu_apres, alinea=None, texte=None):
     print("Remplacement")
     fichier = trouve_fichier_du_texte(texte)
     print("Fichier du texte:", fichier)
@@ -79,7 +80,7 @@ def remplacer_contenu(texte, article, contenu_avant, contenu_apres, alinea=None)
         f.write(contenu_texte)
 
 
-def supprimer(texte, article, alinea=None, article_fin=None):
+def supprimer(article, alinea=None, article_fin=None, texte=None):
     print("Suppression")
     fichier = trouve_fichier_du_texte(texte)
     print("Fichier du texte:", fichier)
@@ -124,7 +125,7 @@ def trouve_section(section, contenu_texte, position_debut=None):
     raise Exception("Section introuvable: " + section)
 
 
-def changer_titre(emplacement, contenu, texte):
+def changer_titre(emplacement, contenu, texte=None):
     print("Changement de titre")
     fichier = trouve_fichier_du_texte(texte)
     print("Fichier du texte:", fichier)
@@ -149,72 +150,56 @@ def changer_titre(emplacement, contenu, texte):
 
 """
 Le code de la propriété intellectuelle est ainsi modifié :
-
+"""
+art69.TEXTE = "code de la propriété intellectuelle"
+"""
 I. – Au quatrième alinéa de l’article L. 331‑5, la référence : « L. 331‑31 » est remplacée par la référence : « L. 331‑28 » et la référence : « L. 331‑32 » est remplacée par la référence : « L. 331‑29 ».
 """
-
 remplacer_contenu(
     alinea=4,
     contenu_avant="L. 331-31",
     contenu_apres="L. 331-28",
-    article="L331‑5",
-    texte="code de la propriété intellectuelle")
-
+    article="L331‑5")
 remplacer_contenu(
     alinea=4,
     contenu_avant="L. 331-32",
     contenu_apres="L. 331-29",
-    article="L331‑5",
-    texte="code de la propriété intellectuelle")
-
-
+    article="L331‑5")
 """
 II. – À l’article L. 331‑6, la référence : « L. 331‑31 » est remplacée par la référence : « L. 331‑28 » et les références : « L. 331‑33 à L. 331‑35 et L. 331‑37 » sont remplacés par les références : « L. 331‑30 à L. 331‑32 et L. 331‑34 ».
 """
-
 remplacer_contenu(
     contenu_avant="L. 331-31",
     contenu_apres="L. 331-28",
-    article="L331‑6",
-    texte="code de la propriété intellectuelle")
-
+    article="L331‑6")
 remplacer_contenu(
     contenu_avant="L. 331-33 à L. 331-35 et L. 331-37",
     contenu_apres="L. 331-30 à L. 331-32 et L. 331-34",
-    article="L331-6",
-    texte="code de la propriété intellectuelle")
-
+    article="L331-6")
 """
 III. –À l’article L. 331‑7, la référence : « L. 331‑31 » est remplacée par la référence : « L. 331‑28 ».
 """
-
 remplacer_contenu(
     contenu_avant="L. 331-31",
     contenu_apres="L. 331-28",
-    article="L331-7",
-    texte="code de la propriété intellectuelle")
-
+    article="L331-7")
 """
 
 IV. – L’intitulé de la section 3 du chapitre Ier du titre III du livre III du même code est ainsi rédigé : « Autorité de régulation de la communication audiovisuelle et numérique ».
 """
 changer_titre(
     emplacement="section 3 du chapitre Ier du titre III du livre III",
-    contenu="Autorité de régulation de la communication audiovisuelle et numérique",
-    texte="code de la propriété intellectuelle")
+    contenu="Autorité de régulation de la communication audiovisuelle et numérique")
 """
 V. – L’intitulé de la sous‑section 1 du chapitre Ier du titre III du livre III du même code est ainsi rédigé : « Compétences et organisation en matière de protection du droit d’auteur et des droits voisins ».
 """
 changer_titre(
     emplacement="sous‑section 1 du chapitre Ier du titre III du livre III",
-    contenu="Compétences et organisation en matière de protection du droit d’auteur et des droits voisins",
-    texte="code de la propriété intellectuelle")
+    contenu="Compétences et organisation en matière de protection du droit d’auteur et des droits voisins")
 """
 VI. – L’article L. 331‑12 est abrogé.
 """
-supprimer(
-    article="L331-12",
-    texte="code de la propriété intellectuelle")
+supprimer(article="L331-12")
 """
 
 VII. – L’article L. 331‑13 est remplacé par les dispositions suivantes :
@@ -231,8 +216,7 @@ contenu = """« L’Autorité de régulation de la communication audiovisuelle e
 """
 remplacer(
     article="L331‑13",
-    contenu=pre_traite_contenu(contenu),
-    texte="code de la propriété intellectuelle")
+    contenu=pre_traite_contenu(contenu))
 """
 VIII. – L’article L. 331‑14 est remplacé par les dispositions suivantes :
 
@@ -242,8 +226,7 @@ IX. – Les articles L. 331‑15 à L. 331‑20 sont abrogés.
 """
 supprimer(
     article="L331-15",
-    article_fin="L331-20",
-    texte="code de la propriété intellectuelle")
+    article_fin="L331-20")
 """
 X. – L’article L. 331‑21 est ainsi modifié :
 
@@ -254,8 +237,7 @@ remplacer_contenu(
     alinea=1,
     contenu_avant=", par la commission de protection des droits, de ses attributions, la Haute Autorité dispose d’agents publics assermentés habilités par le président de la Haute Autorité".replace('‑','-').replace('’', "'"),
     contenu_apres="des missions mentionnées à l’article L. 331‑12, l’Autorité de régulation de la communication audiovisuelle et numérique dispose d’agents publics assermentés et habilités par son président".replace('‑','-').replace('’', "'"),
-    article="L331‑21",
-    texte="code de la propriété intellectuelle")
+    article="L331‑21")
 """
 2° Au deuxième alinéa, les mots : « Les membres de la commission de protection des droits et les agents mentionnés au premier alinéa reçoivent les saisines adressées à ladite commission » sont remplacés par les mots : « I. – Pour l’exercice de la mission mentionnée aux articles L. 331‑18 à L. 331‑24, l’Autorité de régulation de la communication audiovisuelle et numérique et les agents mentionnés au premier alinéa reçoivent les saisines adressées à l’Autorité » et la référence : « L. 331‑23 » est remplacée par la référence : « L. 331‑18 » ;
 """
@@ -263,14 +245,12 @@ remplacer_contenu(
     alinea=2,
     contenu_avant="L. 331-24", # bug loi: 23 -> 24
     contenu_apres="L. 331-18",
-    article="L331‑21",
-    texte="code de la propriété intellectuelle")
+    article="L331‑21")
 remplacer_contenu(
     alinea=2,
     contenu_avant="Les membres de la commission de protection des droits et les agents mentionnés au premier alinéa reçoivent les saisines adressées à ladite commission",
     contenu_apres="I. – Pour l’exercice de la mission mentionnée aux articles L. 331‑18 à L. 331‑24, l’Autorité de régulation de la communication audiovisuelle et numérique et les agents mentionnés au premier alinéa reçoivent les saisines adressées à l’Autorité",
-    article="L331‑21",
-    texte="code de la propriété intellectuelle")
+    article="L331‑21")
 
 """
 3° Au cinquième alinéa, les mots : « l’adresse électronique et » sont remplacés par les mots : « la ou les adresses électroniques dont ils disposent, ainsi que » ;
@@ -279,8 +259,7 @@ remplacer_contenu(
     alinea=5,
     contenu_avant="l’adresse électronique et".replace('‑','-').replace('’', "'"),
     contenu_apres="la ou les adresses électroniques dont ils disposent, ainsi que",
-    article="L331‑21",
-    texte="code de la propriété intellectuelle")
+    article="L331‑21")
 """
 4° Après le cinquième alinéa, sont insérés huit alinéas ainsi rédigés :
 """
@@ -303,8 +282,7 @@ contenu = """« II. – Pour l’exercice de la mission mentionnée à l’artic
 inserer(
     alinea=5,
     article="L331‑21",
-    contenu=pre_traite_contenu(contenu),
-    texte="code de la propriété intellectuelle")
+    contenu=pre_traite_contenu(contenu))
 """
 XI. – Au premier alinéa de l’article L. 331‑21‑1, les mots : « Les membres de la commission de protection des droits, ainsi que ses agents habilités et assermentés devant l’autorité judiciaire mentionnés à l’article L. 331‑21 » sont remplacés par les mots : « Le membre de l’Autorité de régulation de la communication audiovisuelle et numérique chargé d’exercer la mission de protection des œuvres et des objets protégés, ainsi que les agents habilités et assermentés devant l’autorité judiciaire mentionnés au I de l’article L. 331‑14 ».
 
@@ -314,8 +292,7 @@ XII. – L’article L. 331‑22 est ainsi modifié :
 """
 supprimer(
     alinea=1,
-    article="L331-22",
-    texte="code de la propriété intellectuelle")
+    article="L331-22")
 """
 2° Au second alinéa, la référence : « L. 331‑21 » est remplacée par la référence : « L. 331‑14 ».
 """
@@ -323,8 +300,7 @@ remplacer_contenu(
     alinea=1, # 1 car le premier vient d'être supprimé
     contenu_avant="L. 331-21",
     contenu_apres="L. 331-14",
-    article="L331‑22",
-    texte="code de la propriété intellectuelle")
+    article="L331‑22")
 """
 XIII. – L’article L. 331‑23 est ainsi modifié :
 
@@ -334,8 +310,7 @@ remplacer_contenu(
     alinea=2,
     contenu_avant="la Haute Autorité",
     contenu_apres="l’Autorité de régulation de la communication audiovisuelle et numérique développe des outils visant à renforcer la visibilité de l’offre légale auprès du public et",
-    article="L331‑23",
-    texte="code de la propriété intellectuelle")
+    article="L331‑23")
 """
 2° Au premier et au cinquième alinéas, les mots : « l’article L. 331‑34 » sont remplacés par les mots : « l’article 18 de la loi n° 86‑1067 du 30 septembre 1986 relative à la liberté de communication » ;
 """
@@ -343,19 +318,16 @@ remplacer_contenu(
     alinea=[1, 5],
     contenu_avant="l'article L. 331-14", # bug loi: 34 -> 14
     contenu_apres="l'article 18 de la loi n° 86‑1067 du 30 septembre 1986 relative à la liberté de communication",
-    article="L331‑23",
-    texte="code de la propriété intellectuelle")
+    article="L331‑23")
 """
 3  Le deuxième, le troisième et le quatrième alinéa sont supprimés.
 """
 supprimer(
     alinea=3,
-    article="L331‑23",
-    texte="code de la propriété intellectuelle")
+    article="L331‑23")
 supprimer(
     alinea=4,
-    article="L331‑23",
-    texte="code de la propriété intellectuelle")
+    article="L331‑23")
 """
 XIV. – L’article L. 331‑24 est ainsi modifié :
 
@@ -366,8 +338,7 @@ remplacer_contenu(
     alinea=1,
     contenu_avant="La commission de protection des droit",
     contenu_apres="l’Autorité de régulation de la communication audiovisuelle et numérique",
-    article="L331‑24",
-    texte="code de la propriété intellectuelle") # bug: oubli du "S" à "protection des droit"
+    article="L331‑24") # bug: oubli du "S" à "protection des droit"
 """
 2° Au cinquième alinéa, les mots : « La commission de protection des droits » sont remplacés par les mots : « l’Autorité » et les mots : « de la République » sont remplacés par les mots : « de la République ou sur la base d’un constat d’huissier établi à la demande d’un ayant‑droit » ;
 """
@@ -375,14 +346,12 @@ remplacer_contenu(
     alinea=5,
     contenu_avant="La commission de protection des droits",
     contenu_apres="l’Autorité",
-    article="L331‑24",
-    texte="code de la propriété intellectuelle")
+    article="L331‑24")
 remplacer_contenu(
     alinea=5,
     contenu_avant="de la République",
     contenu_apres="de la République ou sur la base d’un constat d’huissier établi à la demande d’un ayant‑droit",
-    article="L331‑24",
-    texte="code de la propriété intellectuelle")
+    article="L331‑24")
 """
 3° Au dernier alinéa, il est ajouté une phrase ainsi rédigée :
 
@@ -398,8 +367,7 @@ remplacer_contenu(
     alinea=1,
     contenu_avant="la commission de protection des droits peut envoyer à l’abonné, sous son timbre et pour son compte, par la voie électronique et par l’intermédiaire de la personne dont l’activité est d’offrir un accès à des services de communication au public en ligne ayant conclu un contrat avec l’abonné".replace('’', "'"),
     contenu_apres="l’Autorité de régulation de la communication audiovisuelle et numérique peut envoyer à l’abonné, sous son timbre et pour son compte, par la voie électronique ou par lettre simple".replace('’', "'"),
-    article="L331‑25",
-    texte="code de la propriété intellectuelle") # bug ? apostophe normalisée
+    article="L331‑25") # bug ? apostophe normalisée
 """
 2° Au second alinéa, les mots : « la commission » sont remplacés par les mots : « l’Autorité » ;
 """
@@ -407,8 +375,7 @@ remplacer_contenu(
     alinea=2,
     contenu_avant="la commission",
     contenu_apres="l’Autorité",
-    article="L331‑25",
-    texte="code de la propriété intellectuelle")
+    article="L331‑25")
 """
 3° Au troisième alinéa, les mots : « En revanche, elles ne divulguent pas » sont remplacés par les mots : « Elles précisent » et la dernière phrase est remplacée par la phrase suivante :
 """
@@ -416,8 +383,7 @@ remplacer_contenu(
     alinea=3,
     contenu_avant="En revanche, elles ne divulguent pas",
     contenu_apres="Elles précisent",
-    article="L331‑25",
-    texte="code de la propriété intellectuelle")
+    article="L331‑25")
 # TODO: phrase suivante
 """
 « Elles indiquent les coordonnées postales et électroniques où leur destinataire peut adresser, s’il le souhaite, des observations à l’Autorité » ;
@@ -428,7 +394,6 @@ remplacer_contenu(
 """
 inserer(
     article="L331‑25",
-    texte="code de la propriété intellectuelle",
     contenu="L’Autorité publie, dans le rapport mentionné à l’article 18 de la loi n° 86‑1067 du 30 septembre 1986 relative à la liberté de communication, des indicateurs synthétiques indiquant le nombre de saisines reçues en application de l’article L. 331‑18 et le nombre de recommandations adressées sur le fondement du présent article.")
 """
 XVI. – L’article L. 331‑26 est abrogé.
@@ -439,8 +404,7 @@ remplacer_contenu(
     alinea=1,
     contenu_avant="la commission de protection des droits",
     contenu_apres="l’Autorité de régulation de la communication audiovisuelle et numérique",
-    article="L331‑27",
-    texte="code de la propriété intellectuelle")
+    article="L331‑27")
 """
 XVIII. – L’article L. 331‑28 est ainsi modifié :
 
@@ -450,8 +414,7 @@ remplacer_contenu(
     alinea=1,
     contenu_avant="La commission de protection des droits", # bug majuscule
     contenu_apres="L’Autorité de régulation de la communication audiovisuelle et numérique",
-    article="L331‑28",
-    texte="code de la propriété intellectuelle")
+    article="L331‑28")
 """
 2° Au deuxième alinéa, les mots : « la commission de protection des droits » sont remplacés par les mots : « l’Autorité » et les mots : « la commission procède » sont remplacés par les mots : « l’Autorité procède ».
 """
@@ -459,14 +422,12 @@ remplacer_contenu(
     alinea=2,
     contenu_avant="la commission de protection des droits",
     contenu_apres="l’Autorité",
-    article="L331‑28",
-    texte="code de la propriété intellectuelle")
+    article="L331‑28")
 remplacer_contenu(
     alinea=2,
     contenu_avant="la commission procède",
     contenu_apres="l’Autorité procède",
-    article="L331‑28",
-    texte="code de la propriété intellectuelle")
+    article="L331‑28")
 """
 XIX. – L’article L. 331‑29 est ainsi modifié :
 
@@ -478,8 +439,7 @@ remplacer_contenu(
     alinea=2,
     contenu_avant="par la commission de protection des droits, des mesures prévues à la présente sous‑section".replace('‑', '-'),
     contenu_apres="par l’Autorité, des mesures prévues au présent paragraphe",
-    article="L331‑29",
-    texte="code de la propriété intellectuelle")
+    article="L331‑29")
 """
 3° Au dernier alinéa, les mots : « de la Haute Autorité » sont remplacés par les mots : « de l’Autorité ».
 """
@@ -487,8 +447,7 @@ remplacer_contenu(
     # alinea=-1,
     contenu_avant="de la Haute Autorité",
     contenu_apres="de l’Autorité",
-    article="L331‑29",
-    texte="code de la propriété intellectuelle")
+    article="L331‑29")
 """
 
 XX. – À l’article L. 331‑30, les mots : « le collège et la commission de protection des droits de la Haute Autorité » sont remplacés par les mots : « l’Autorité de régulation de la communication audiovisuelle et numérique ».
@@ -496,8 +455,7 @@ XX. – À l’article L. 331‑30, les mots : « le collège et la commission d
 remplacer_contenu(
     contenu_avant="le collège et la commission de protection des droits de la Haute Autorité",
     contenu_apres="l’Autorité de régulation de la communication audiovisuelle et numérique",
-    article="L331‑30",
-    texte="code de la propriété intellectuelle")
+    article="L331‑30")
 """
 XXI. – Après l’article L. 331‑30 sont insérés des articles L. 331‑30‑1 à L. 331‑30‑4 ainsi rédigés :
 """
@@ -553,8 +511,7 @@ contenu = """« Art. L. 331‑30‑1. – I. – L’Autorité de régulation de
 """
 inserer(
     article="L331‑30",
-    contenu=pre_traite_contenu(contenu),
-    texte="code de la propriété intellectuelle")
+    contenu=pre_traite_contenu(contenu))
 """
 XXII. – L’article L. 331‑31 est ainsi modifié :
 
@@ -564,8 +521,7 @@ remplacer_contenu(
     alinea=1,
     contenu_avant="la Haute Autorité",
     contenu_apres="l’Autorité de régulation de la communication audiovisuelle et numérique",
-    article="L331‑31",
-    texte="code de la propriété intellectuelle")
+    article="L331‑31")
 """
 2° Au quatrième et au cinquième alinéas, les mots : « à compter du 1er janvier 2009 » sont supprimés ;
 """
@@ -573,8 +529,7 @@ remplacer_contenu(
     alinea=[4, 5],
     contenu_avant="à compter du 1er janvier 2009",
     contenu_apres="",
-    article="L331‑31",
-    texte="code de la propriété intellectuelle")
+    article="L331‑31")
 """
 3° Au sixième alinéa, les mots : « , à compter du 1er janvier 2009, » sont supprimés ;
 """
@@ -582,8 +537,7 @@ remplacer_contenu(
     alinea=6,
     contenu_avant=", à compter du 1er janvier 2009,",
     contenu_apres="",
-    article="L331‑31",
-    texte="code de la propriété intellectuelle")
+    article="L331‑31")
 """
 4° Au neuvième alinéa, les mots : « la Haute Autorité » sont remplacés par les mots : « l’Autorité » et les mots : « L. 331‑33 à L. 331‑35 et L. 331‑37 du présent code » sont remplacés par les mots : « L. 331‑30 à L. 331‑32 et L  331‑34 du présent code ».
 """
@@ -591,14 +545,12 @@ remplacer_contenu(
     alinea=9,
     contenu_avant="la Haute Autorité",
     contenu_apres="l’Autorité",
-    article="L331‑31",
-    texte="code de la propriété intellectuelle")
+    article="L331‑31")
 remplacer_contenu(
     alinea=9,
     contenu_avant="L. 331‑33 à L. 331‑35 et L. 331‑37 du présent code".replace('‑','-'),
     contenu_apres="L. 331‑30 à L. 331‑32 et L  331‑34 du présent code".replace('‑','-'),
-    article="L331‑31",
-    texte="code de la propriété intellectuelle")
+    article="L331‑31")
 """
 XXIII. – L’article L. 331‑32 est ainsi modifié :
 
@@ -609,8 +561,7 @@ remplacer_contenu(
     alinea=1,
     contenu_avant="à la Haute Autorité",
     contenu_apres="à l’Autorité de régulation de la communication audiovisuelle et numérique",
-    article="L331‑32",
-    texte="code de la propriété intellectuelle")
+    article="L331‑32")
 """
 2° À la seconde phrase du premier alinéa, les mots : « deux mois » sont remplacés par les mots : « quatre mois » ;
 """
@@ -619,8 +570,7 @@ remplacer_contenu(
     alinea=1,
     contenu_avant="deux mois",
     contenu_apres="quatre mois",
-    article="L331‑32",
-    texte="code de la propriété intellectuelle")
+    article="L331‑32")
 """
 3° À la deuxième phrase du premier alinéa et aux quatrième et cinquième alinéas, les mots : « la Haute Autorité » sont remplacés par les mots : « l’Autorité » ;
 """
@@ -629,8 +579,7 @@ remplacer_contenu(
     alinea=[1, 4, 5],
     contenu_avant="la Haute Autorité",
     contenu_apres="l’Autorité",
-    article="L331‑32",
-    texte="code de la propriété intellectuelle")
+    article="L331‑32")
 """
 4° Au sixième et au dernier alinéas, les mots : « de la Haute Autorité » sont remplacés par les mots : « de l’Autorité » ;
 """
@@ -638,8 +587,7 @@ remplacer_contenu(
     # alinea=[6, -1],
     contenu_avant="de la Haute Autorité",
     contenu_apres="de l’Autorité",
-    article="L331‑32",
-    texte="code de la propriété intellectuelle")
+    article="L331‑32")
 """
 5° Au dernier alinéa, les mots : « à la Haute Autorité » sont remplacés par les mots : « à l’Autorité ».
 """
@@ -647,8 +595,7 @@ remplacer_contenu(
     # alinea=-1,
     contenu_avant="à la Haute Autorité",
     contenu_apres="à l’Autorité",
-    article="L331‑32",
-    texte="code de la propriété intellectuelle")
+    article="L331‑32")
 """
 XXIV. – À l’article L. 331‑33, la référence : « L. 331‑31 » est remplacée par la référence : « L. 331‑28 » et les mots : « la Haute Autorité » sont remplacés par les mots : « l’Autorité de régulation de la communication audiovisuelle et numérique ».
 """
@@ -656,14 +603,12 @@ remplacer_contenu(
     # alinea=-1,
     contenu_avant="L. 331‑31".replace('‑','-'),
     contenu_apres="L. 331‑28".replace('‑','-'),
-    article="L331‑33",
-    texte="code de la propriété intellectuelle")
+    article="L331‑33")
 remplacer_contenu(
     # alinea=-1,
     contenu_avant="la Haute Autorité",
     contenu_apres="l’Autorité de régulation de la communication audiovisuelle et numérique",
-    article="L331‑33",
-    texte="code de la propriété intellectuelle")
+    article="L331‑33")
 """
 XXV. – L’article L. 331‑34 est ainsi modifié :
 
@@ -674,8 +619,7 @@ remplacer_contenu(
     alinea=1,
     contenu_avant="la Haute Autorité",
     contenu_apres="l’Autorité de régulation de la communication audiovisuelle et numérique",
-    article="L331‑34",
-    texte="code de la propriété intellectuelle")
+    article="L331‑34")
 """
 2° Sont insérés deux alinéas ainsi rédigés :
 """
@@ -689,7 +633,6 @@ contenu = contenu.replace('« ', '') \
     .strip()
 inserer(
     article="L331‑34",
-    texte="code de la propriété intellectuelle",
     contenu=contenu)
 """
 XXVI. – L’article L. 331‑35 est ainsi modifié :
@@ -700,8 +643,7 @@ remplacer_contenu(
     alinea=1,
     contenu_avant="la Haute Autorité",
     contenu_apres="l’Autorité de régulation de la communication audiovisuelle et numérique",
-    article="L331‑35",
-    texte="code de la propriété intellectuelle")
+    article="L331‑35")
 """
 2° Au deuxième alinéa, les mots : « la Haute Autorité » sont remplacés par les mots : « l’Autorité » et il est ajouté une phrase ainsi rédigée :
 
@@ -711,8 +653,7 @@ remplacer_contenu(
     alinea=2,
     contenu_avant="la Haute Autorité",
     contenu_apres="l’Autorité de régulation de la communication audiovisuelle et numérique",
-    article="L331‑35",
-    texte="code de la propriété intellectuelle")
+    article="L331‑35")
 # TODO: phrase
 """
 XXVII. – L’article L. 331‑36 est ainsi modifié :
@@ -726,14 +667,12 @@ remplacer_contenu(
     alinea=1,
     contenu_avant="La Haute Autorité",
     contenu_apres="L’Autorité de régulation de la communication audiovisuelle et numérique",
-    article="L331‑36",
-    texte="code de la propriété intellectuelle")
+    article="L331‑36")
 remplacer_contenu(
     alinea=1,
     contenu_avant="l'article L. 331-32",
     contenu_apres="l'article L. 331-29",
-    article="L331‑36",
-    texte="code de la propriété intellectuelle")
+    article="L331‑36")
 # TODO: phrase
 """
 2° Au second alinéa, la référence : « L. 331‑31 » est remplacée par la référence : « L. 331‑28 ».
@@ -742,8 +681,7 @@ remplacer_contenu(
     alinea=2,
     contenu_avant="L. 331-31",
     contenu_apres="L. 331-28",
-    article="L331‑36",
-    texte="code de la propriété intellectuelle")
+    article="L331‑36")
 """
 XXVIII. – Les articles L. 331‑12 à L. 331‑36, dans leur rédaction résultant du présent article font l’objet de la nouvelle numérotation suivante :
 
@@ -770,13 +708,11 @@ XXX. – L’article L  342‑3‑1 est ainsi modifié :
 remplacer_contenu(
     contenu_avant="L. 331‑31".replace('‑','-'),
     contenu_apres="L. 331‑29".replace('‑','-'),
-    article="L342‑3‑1",
-    texte="code de la propriété intellectuelle")
+    article="L342‑3‑1")
 remplacer_contenu(
     contenu_avant="L. 331‑33 à L. 331‑35 et L. 331‑37".replace('‑','-'),
     contenu_apres="L. 331‑30 à L. 331‑32 et L. 331‑34".replace('‑','-'),
-    article="L342‑3‑1",
-    texte="code de la propriété intellectuelle")
+    article="L342‑3‑1")
 """
 2° Au dernier alinéa, les mots : « à la Haute Autorité pour la diffusion des œuvres et la protection des droits sur internet prévue à l’article L. 331‑12 » sont remplacés par les mots : « à l’Autorité de régulation de la communication audiovisuelle et numérique ».
 """
@@ -784,5 +720,4 @@ remplacer_contenu(
     # alinea=-1,
     contenu_avant="à la Haute Autorité pour la diffusion des œuvres et la protection des droits sur internet prévue à l’article L. 331‑12".replace('‑','-').replace('’', "'"),
     contenu_apres="à l’Autorité de régulation de la communication audiovisuelle et numérique",
-    article="L342‑3‑1",
-    texte="code de la propriété intellectuelle")
+    article="L342‑3‑1")

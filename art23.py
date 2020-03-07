@@ -26,7 +26,7 @@ def trouve_le_point_d_insertion_pour_article(article_a_inserer, contenu_texte):
             dernier_point_insertion = i
 
 
-def inserer_article(texte, article, contenu):
+def inserer_article(article, contenu, texte=None):
     print("Insertion")
     fichier = trouve_fichier_du_texte(texte)
     print("Fichier du texte:", fichier)

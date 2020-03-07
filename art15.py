@@ -11,7 +11,7 @@ def trouve_alinea_fin(contenu_texte, position_article):
     return position_alinea - 2
 
 
-def remplacer(texte, article, contenu, alinea_debut=1, alinea_fin=None):
+def remplacer(article, contenu, alinea_debut=1, alinea_fin=None, texte=None):
     print("Remplacement")
     fichier = trouve_fichier_du_texte(texte)
     print("Fichier du texte:", fichier)

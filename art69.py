@@ -4,10 +4,12 @@ from fuzzywuzzy import fuzz, process
 
 
 REPO = "../pjl-audiovisuel"
+TEXTE = None
 
 
-def trouve_fichier_du_texte(texte):
-    global REPO
+def trouve_fichier_du_texte(texte=None):
+    global REPO, TEXTE
+    texte = texte or TEXTE
     fichiers = os.listdir(REPO)
     fichiers_clean = [fichier.replace('_', ' ') for fichier in fichiers]
     fichier_clean, score = process.extractOne(texte, fichiers_clean, scorer=fuzz.token_sort_ratio)
@@ -15,6 +17,7 @@ def trouve_fichier_du_texte(texte):
     if score > 50:
         return os.path.join(REPO, fichier)
     raise Exception("Texte introuvable: " + texte)
+
 
 def trouve_article(article, contenu_texte):
     article = article.replace('‑', '-')
@@ -24,7 +27,7 @@ def trouve_article(article, contenu_texte):
     raise Exception("Article introuvable: " + article)
 
 
-def inserer(texte, article, contenu, alinea=None):
+def inserer(article, contenu, alinea=None, texte=None):
     print("Insertion")
     fichier = trouve_fichier_du_texte(texte)
     print("Fichier du texte:", fichier)
