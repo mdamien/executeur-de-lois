@@ -95,7 +95,7 @@ def supprimer(texte, article, alinea=None, article_fin=None):
     if alinea:
         position_alinea = trouve_alinea(position_article, alinea, contenu_texte)
         print("Alinea:", contenu_texte[position_alinea][:30])
-        contenu_texte = contenu_texte[:position_alinea] + contenu_texte[:position_alinea+1]
+        contenu_texte = contenu_texte[:position_alinea] + contenu_texte[position_alinea+1:]
     else:
         if article_fin:
             position_alinea = trouve_article(article_fin, contenu_texte)
@@ -312,17 +312,20 @@ XI. – Au premier alinéa de l’article L. 331‑21‑1, les mots : « Les mem
 XII. – L’article L. 331‑22 est ainsi modifié :
 
 1° Le premier alinéa est supprimé ;
-
+"""
+supprimer(
+    alinea=1,
+    article="L331-22",
+    texte="code de la propriété intellectuelle")
+"""
 2° Au second alinéa, la référence : « L. 331‑21 » est remplacée par la référence : « L. 331‑14 ».
 """
-
 remplacer_contenu(
-    alinea=2,
+    alinea=1, # 1 car le premier vient d'être supprimé
     contenu_avant="L. 331-21",
     contenu_apres="L. 331-14",
     article="L331‑22",
     texte="code de la propriété intellectuelle")
-
 """
 XIII. – L’article L. 331‑23 est ainsi modifié :
 
@@ -650,7 +653,15 @@ remplacer_contenu(
 XXV. – L’article L. 331‑34 est ainsi modifié :
 
 1° Au début du premier alinéa, est ajoutée la mention : « I. – » et les mots : « la Haute Autorité » sont remplacés par les mots : « l’Autorité de régulation de la communication audiovisuelle et numérique » ;
-
+"""
+# TODO: debut
+remplacer_contenu(
+    alinea=1,
+    contenu_avant="la Haute Autorité",
+    contenu_apres="l’Autorité de régulation de la communication audiovisuelle et numérique",
+    article="L331‑34",
+    texte="code de la propriété intellectuelle")
+"""
 2° Sont insérés deux alinéas ainsi rédigés :
 """
 contenu = """« II. – Au titre de sa participation à la mission de facilitation de l’accès des personnes en situation de handicap aux œuvres protégées par un droit d’auteur ou un droit voisin, l’Autorité peut recueillir auprès des éditeurs, de la Bibliothèque nationale de France et des personnes morales et établissements mentionnées au 7° de l’article L. 122‑5 toutes informations et document utiles. Elle peut à ce titre mettre en demeure les éditeurs de respecter les obligations prévues au 2° de l’article L. 122‑5‑1.
@@ -711,7 +722,14 @@ remplacer_contenu(
 # TODO: phrase
 """
 2° Au second alinéa, la référence : « L. 331‑31 » est remplacée par la référence : « L. 331‑28 ».
-
+"""
+remplacer_contenu(
+    alinea=2,
+    contenu_avant="L. 331-31",
+    contenu_apres="L. 331-28",
+    article="L331‑36",
+    texte="code de la propriété intellectuelle")
+"""
 XXVIII. – Les articles L. 331‑12 à L. 331‑36, dans leur rédaction résultant du présent article font l’objet de la nouvelle numérotation suivante :
 
 1° Les articles L. 331‑13 et L. 331‑14 deviennent les articles L. 331‑12 et L. 331‑13 ;
