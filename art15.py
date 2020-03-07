@@ -20,27 +20,22 @@ def remplacer(article, contenu, alinea_debut=1, alinea_fin=None, texte=None):
         contenu_texte = f.read().split("\n")
 
     position_article = trouve_article(article, contenu_texte)
-    print("Article du texte:", contenu_texte[position_article][:20])
+    print("Article du texte:", contenu_texte[position_article][:30])
 
     position_debut = position_article + alinea_debut*2
-    print("Alinea du début:", contenu_texte[position_debut][:20])
+    print("Alinea du début:", contenu_texte[position_debut][:30])
     if not alinea_fin:
         position_fin = trouve_alinea_fin(contenu_texte, position_article)
     else:
         position_fin = position_article + alinea_fin*2
-    print("Alinea de fin:", contenu_texte[position_fin][:20])
+    print("Alinea de fin:", contenu_texte[position_fin][:30])
     nouveau_contenu_texte = contenu_texte[:position_debut]
+    nouveau_contenu_texte.append(contenu)
+    nouveau_contenu_texte.append("")
     nouveau_contenu_texte += contenu_texte[position_fin + 2:]
 
     with open(fichier, 'w') as f:
         f.write('\n'.join(nouveau_contenu_texte))
-
-    inserer(
-        texte=texte,
-        article=article,
-        alinea=alinea_debut,
-        contenu=contenu
-    )
 
 
 if __name__ == "__main__":

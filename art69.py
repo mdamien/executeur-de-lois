@@ -36,7 +36,7 @@ def inserer(article, contenu, alinea=None, texte=None):
         contenu_texte = f.read().split("\n")
 
     position_article = trouve_article(article, contenu_texte)
-    print("Article du texte:", contenu_texte[position_article][:20])
+    print("Article du texte:", contenu_texte[position_article][:30])
 
     if alinea is None:
         position_alinea = position_article + 1
@@ -49,7 +49,7 @@ def inserer(article, contenu, alinea=None, texte=None):
     else:
         position_alinea = position_article + alinea*2
 
-    print("Contenu alinea:", contenu_texte[position_alinea][:20])
+    print("Contenu alinea:", contenu_texte[position_alinea][:30])
     
     nouveau_contenu_texte = contenu_texte[:position_alinea+1]
     nouveau_contenu_texte.append("")

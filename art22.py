@@ -2,10 +2,13 @@ from art69 import *
 import art69
 from art15 import remplacer
 
+
 def pre_traite_contenu(contenu):
     contenu = contenu.replace('« ', '') \
         .replace('» ;', '') \
         .replace('»', '') \
+        .replace('‑','-') \
+        .replace('’', "'") \
         .strip()
 
     contenu = contenu.split('\n')
