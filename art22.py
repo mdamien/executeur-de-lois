@@ -351,7 +351,16 @@ remplacer_contenu(
 """
 """
 3  Le deuxième, le troisième et le quatrième alinéa sont supprimés.
-
+"""
+supprimer(
+    alinea=3,
+    article="L331‑23",
+    texte="code de la propriété intellectuelle")
+supprimer(
+    alinea=4,
+    article="L331‑23",
+    texte="code de la propriété intellectuelle")
+"""
 XIV. – L’article L. 331‑24 est ainsi modifié :
 
 1° Au premier alinéa, les mots : « La commission de protection des droit » sont remplacés par les mots : « l’Autorité de régulation de la communication audiovisuelle et numérique » ;
@@ -382,7 +391,9 @@ remplacer_contenu(
 3° Au dernier alinéa, il est ajouté une phrase ainsi rédigée :
 
 « Ce délai est de douze mois s’agissant des informations transmises par le procureur de la République. »
-
+"""
+# TODO
+"""
 XV. – L’article L. 331‑25 est ainsi modifié :
 
 1° Au premier alinéa, les mots : « la commission de protection des droits peut envoyer à l’abonné, sous son timbre et pour son compte, par la voie électronique et par l’intermédiaire de la personne dont l’activité est d’offrir un accès à des services de communication au public en ligne ayant conclu un contrat avec l’abonné » sont remplacés par les mots : « l’Autorité de régulation de la communication audiovisuelle et numérique peut envoyer à l’abonné, sous son timbre et pour son compte, par la voie électronique ou par lettre simple » ;
@@ -418,7 +429,6 @@ remplacer_contenu(
 4° Il est inséré un dernier alinéa ainsi rédigé :
 
 « L’Autorité publie, dans le rapport mentionné à l’article 18 de la loi n° 86‑1067 du 30 septembre 1986 relative à la liberté de communication, des indicateurs synthétiques indiquant le nombre de saisines reçues en application de l’article L. 331‑18 et le nombre de recommandations adressées sur le fondement du présent article. »
-
 """
 inserer(
     article="L331‑25",
