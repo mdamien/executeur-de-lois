@@ -443,12 +443,25 @@ XVIII. – L’article L. 331‑28 est ainsi modifié :
 remplacer_contenu(
     alinea=1,
     contenu_avant="La commission de protection des droits", # bug majuscule
-    contenu_apres="l’Autorité de régulation de la communication audiovisuelle et numérique",
+    contenu_apres="L’Autorité de régulation de la communication audiovisuelle et numérique",
     article="L331‑28",
     texte="code de la propriété intellectuelle")
 """
 2° Au deuxième alinéa, les mots : « la commission de protection des droits » sont remplacés par les mots : « l’Autorité » et les mots : « la commission procède » sont remplacés par les mots : « l’Autorité procède ».
-
+"""
+remplacer_contenu(
+    alinea=2,
+    contenu_avant="la commission de protection des droits",
+    contenu_apres="l’Autorité",
+    article="L331‑28",
+    texte="code de la propriété intellectuelle")
+remplacer_contenu(
+    alinea=2,
+    contenu_avant="la commission procède",
+    contenu_apres="l’Autorité procède",
+    article="L331‑28",
+    texte="code de la propriété intellectuelle")
+"""
 XIX. – L’article L. 331‑29 est ainsi modifié :
 
 1° Au premier alinéa, les mots : « la Haute Autorité » sont remplacés par les mots : « l’Autorité de régulation de la communication audiovisuelle et numérique » et les mots : « de la présente sous‑section » sont remplacés par les mots : « du présent paragraphe » ;
@@ -462,7 +475,6 @@ remplacer_contenu(
     article="L331‑29",
     texte="code de la propriété intellectuelle")
 """
-
 3° Au dernier alinéa, les mots : « de la Haute Autorité » sont remplacés par les mots : « de l’Autorité ».
 """
 remplacer_contenu(
@@ -533,12 +545,10 @@ contenu = """« Art. L. 331‑30‑1. – I. – L’Autorité de régulation de
 
 « II. – Lorsqu’il n’est pas procédé au blocage ou au déréférencement des contenus en application des trois premiers alinéas, l’autorité judiciaire peut être saisie, en référé ou sur requête pour ordonner toute mesure destinée à faire cesser l’accès à ces contenus. »
 """
-
 inserer(
     article="L331‑30",
     contenu=pre_traite_contenu(contenu),
     texte="code de la propriété intellectuelle")
-
 """
 XXII. – L’article L. 331‑31 est ainsi modifié :
 
@@ -626,7 +636,6 @@ remplacer_contenu(
     texte="code de la propriété intellectuelle")
 """
 5° Au dernier alinéa, les mots : « à la Haute Autorité » sont remplacés par les mots : « à l’Autorité ».
-
 """
 remplacer_contenu(
     # alinea=-1,
