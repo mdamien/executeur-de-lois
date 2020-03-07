@@ -184,7 +184,6 @@ remplacer_contenu(
     contenu_apres="L. 331-28",
     article="L331-7")
 """
-
 IV. – L’intitulé de la section 3 du chapitre Ier du titre III du livre III du même code est ainsi rédigé : « Autorité de régulation de la communication audiovisuelle et numérique ».
 """
 changer_titre(
@@ -251,7 +250,6 @@ remplacer_contenu(
     contenu_avant="Les membres de la commission de protection des droits et les agents mentionnés au premier alinéa reçoivent les saisines adressées à ladite commission",
     contenu_apres="I. – Pour l’exercice de la mission mentionnée aux articles L. 331‑18 à L. 331‑24, l’Autorité de régulation de la communication audiovisuelle et numérique et les agents mentionnés au premier alinéa reçoivent les saisines adressées à l’Autorité",
     article="L331‑21")
-
 """
 3° Au cinquième alinéa, les mots : « l’adresse électronique et » sont remplacés par les mots : « la ou les adresses électroniques dont ils disposent, ainsi que » ;
 """
@@ -686,21 +684,35 @@ remplacer_contenu(
 XXVIII. – Les articles L. 331‑12 à L. 331‑36, dans leur rédaction résultant du présent article font l’objet de la nouvelle numérotation suivante :
 
 1° Les articles L. 331‑13 et L. 331‑14 deviennent les articles L. 331‑12 et L. 331‑13 ;
-
+"""
+# TODO
+"""
 2° Les articles L. 331‑21, L. 331‑21‑1, L. 331‑22, L. 331‑23, L. 331‑24, L. 331‑25, L. 331‑27, L. 331‑28, L. 331‑29, L. 331‑30, L. 331‑30‑1, L. 331‑30‑2, L. 331‑30‑3, L. 331‑30‑4, L. 331‑31, L. 331‑32, L. 331‑33, L. 331‑34, L. 331‑35 et L. 331‑36 deviennent respectivement les articles L. 331‑14, L. 331‑15, L. 331‑16, L. 331‑17, L. 331‑18, L. 331‑19, L. 331‑20, L. 331‑21, L. 331‑22, L. 331‑23, L. 331‑24, L. 331‑25, L. 331‑26, L. 331‑27, L. 331‑28, L. 331‑29, L. 331‑30, L. 331‑31, L. 331‑32, et L. 331‑33 ;
-
+"""
+# TODO
+"""
 3° L’article L. 331‑37 devient l’article L. 331‑34.
-
+"""
+# TODO
+"""
 XXIX. – La sous‑section 3 du chapitre Ier du titre III du livre III est ainsi modifié :
 
 1° Il est créé un paragraphe 1 intitulé : « Envoi de recommandations aux abonnés » qui comprend les articles L. 331‑18 à L. 331‑23 » ;
-
+"""
+# TODO
+"""
 2° Il est créé un paragraphe 2 intitulé : « Mesures destinées à prévenir ou faire cesser des atteintes aux droits » qui comprend l’article L. 331‑24 ;
-
+"""
+# TODO
+"""
 3° Il est créé un paragraphe 3 intitulé : « Caractérisation des atteintes aux droits » qui comprend les articles L. 331‑25 et L. 331‑26 ;
-
+"""
+# TODO
+"""
 4° Il est créé un paragraphe 4 intitulé : « Lutte contre les sites miroirs » qui comprend l’article L. 331‑27.
-
+"""
+# TODO
+"""
 XXX. – L’article L  342‑3‑1 est ainsi modifié :
 
 1° La référence : « L. 331‑31 » est remplacée par la référence : « L. 331‑29 » et les références : « L. 331‑33 à L. 331‑35 et L. 331‑37 » sont remplacés par les références : « L. 331‑30 à L. 331‑32 et L. 331‑34 » ;
