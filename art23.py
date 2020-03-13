@@ -3,6 +3,7 @@ from art15 import *
 
 def normalise_numero_article(article):
     article = article.replace('‑', '-')
+    article = article.replace('LO', 'L')
     return '-'.join([n.rjust(3, '0') for n in article[1:].split('-')])
 
 
@@ -93,9 +94,10 @@ while i < len(contenu):
     i += 1
 contenu = '\n'.join(nouveau_contenu)
 
-inserer_article(
-    texte="code du sport",
-    contenu=contenu,
-    article="L333‑10"
-)
+if __name__ == '__main__':
+    inserer_article(
+        texte="code du sport",
+        contenu=contenu,
+        article="L333‑10"
+    )
 

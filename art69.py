@@ -21,6 +21,7 @@ def trouve_fichier_du_texte(texte=None):
 
 def trouve_article(article, contenu_texte):
     article = article.replace('‑', '-')
+    article = article.replace('L. ', 'L')
     for i, line in enumerate(contenu_texte):
         if 'Article %s' % article in line:
             return i
